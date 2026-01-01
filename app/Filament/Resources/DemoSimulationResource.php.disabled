@@ -1,0 +1,282 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\DemoSimulationResource\Pages;
+use App\Filament\Resources\DemoSimulationResource\RelationManagers;
+use App\Models\DemoSimulation;
+use App\Models\User;
+use App\Services\DemoSimulationService;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+class DemoSimulationResource extends Resource
+{
+    protected static ?string $model = DemoSimulation::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
+
+    protected static ?string $navigationLabel = 'Mode Démo';
+
+    protected static ?string $navigationGroup = 'Affiliations';
+
+    protected static ?string $modelLabel = 'Simulation';
+
+    protected static ?string $pluralModelLabel = 'Simulations Démo';
+
+    protected static ?int $navigationSort = 1;
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Forms\Components\Section::make('Informations de base')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('Nom du scénario')
+                            ->required()
+                            ->maxLength(255)
+                            ->placeholder('Ex: Simulation gain Décembre 2025')
+                            ->columnSpanFull(),
+
+                        Forms\Components\Select::make('user_id')
+                            ->label('Utilisateur cible')
+                            ->options(User::all()->pluck('name', 'id'))
+                            ->required()
+                            ->searchable()
+                            ->helperText('Sélectionnez l\'utilisateur pour qui générer les données de démo'),
+
+                        Forms\Components\Select::make('scenario_type')
+                            ->label('Type de scénario')
+                            ->options([
+                                'gain' => 'Gains (65% de réussite)',
+                                'perte' => 'Pertes (35% de réussite)',
+                                'mixte' => 'Mixte (50% de réussite)',
+                            ])
+                            ->required()
+                            ->default('mixte')
+                            ->helperText('Le type de scénario détermine le taux de réussite des paris'),
+                    ])->columns(2),
+
+                Forms\Components\Section::make('Période de simulation')
+                    ->schema([
+                        Forms\Components\DatePicker::make('start_date')
+                            ->label('Date de début')
+                            ->required()
+                            ->default(now()->startOfMonth())
+                            ->maxDate(now()),
+
+                        Forms\Components\DatePicker::make('end_date')
+                            ->label('Date de fin')
+                            ->required()
+                            ->default(now())
+                            ->maxDate(now())
+                            ->after('start_date'),
+                    ])->columns(2),
+
+                Forms\Components\Section::make('Configuration du scénario')
+                    ->schema([
+                        Forms\Components\TextInput::make('scenario_config.avg_bets_per_day')
+                            ->label('Nombre moyen de paris par jour')
+                            ->numeric()
+                            ->default(10)
+                            ->minValue(1)
+                            ->maxValue(1000)
+                            ->helperText('Nombre moyen de paris que l\'utilisateur fera par jour'),
+
+                        Forms\Components\TextInput::make('scenario_config.avg_bet_amount')
+                            ->label('Montant moyen par pari (FCFA)')
+                            ->numeric()
+                            ->default(1000)
+                            ->minValue(100)
+                            ->helperText('Montant moyen misé par pari'),
+
+                        Forms\Components\TextInput::make('scenario_config.variance')
+                            ->label('Variance')
+                            ->numeric()
+                            ->default(0.3)
+                            ->step(0.1)
+                            ->minValue(0.1)
+                            ->maxValue(1)
+                            ->helperText('Variation des données (0.3 = 30% de variation). Plus c\'est élevé, plus les données sont aléatoires'),
+                    ])->columns(3)
+                    ->collapsible(),
+
+                Forms\Components\Section::make('Statut')
+                    ->schema([
+                        Forms\Components\Toggle::make('is_preview')
+                            ->label('Mode prévisualisation')
+                            ->default(true)
+                            ->helperText('Activez pour voir les données sans les appliquer')
+                            ->live(),
+
+                        Forms\Components\Toggle::make('is_active')
+                            ->label('Activer la simulation')
+                            ->default(false)
+                            ->visible(fn (Forms\Get $get): bool => !$get('is_preview'))
+                            ->helperText('Une seule simulation peut être active par utilisateur'),
+                    ])->columns(2),
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nom du scénario')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold'),
+
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Utilisateur')
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('scenario_type')
+                    ->label('Type')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'gain' => 'success',
+                        'perte' => 'danger',
+                        'mixte' => 'info',
+                    })
+                    ->formatStateUsing(fn (DemoSimulation $record) => $record->scenario_type_label),
+
+                Tables\Columns\TextColumn::make('start_date')
+                    ->label('Période')
+                    ->formatStateUsing(fn (DemoSimulation $record) =>
+                        $record->start_date->format('d/m/Y') . ' - ' . $record->end_date->format('d/m/Y'))
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('total_bets')
+                    ->label('Paris')
+                    ->alignCenter()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('win_rate')
+                    ->label('Taux réussite')
+                    ->suffix('%')
+                    ->alignCenter()
+                    ->sortable()
+                    ->color(fn (float $state): string => $state >= 50 ? 'success' : 'danger'),
+
+                Tables\Columns\TextColumn::make('net_profit')
+                    ->label('Profit Net')
+                    ->money('XOF')
+                    ->sortable()
+                    ->color(fn (float $state): string => $state >= 0 ? 'success' : 'danger'),
+
+                Tables\Columns\TextColumn::make('status_label')
+                    ->label('Statut')
+                    ->badge()
+                    ->color(fn (DemoSimulation $record): string => match (true) {
+                        $record->is_preview => 'gray',
+                        $record->is_active => 'success',
+                        default => 'warning',
+                    }),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Créée le')
+                    ->dateTime('d/m/Y H:i')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                Tables\Filters\SelectFilter::make('user_id')
+                    ->label('Utilisateur')
+                    ->options(User::all()->pluck('name', 'id'))
+                    ->searchable(),
+
+                Tables\Filters\SelectFilter::make('scenario_type')
+                    ->label('Type de scénario')
+                    ->options([
+                        'gain' => 'Gains',
+                        'perte' => 'Pertes',
+                        'mixte' => 'Mixte',
+                    ]),
+
+                Tables\Filters\TernaryFilter::make('is_active')
+                    ->label('Statut')
+                    ->placeholder('Tous')
+                    ->trueLabel('Actifs')
+                    ->falseLabel('Inactifs'),
+
+                Tables\Filters\TernaryFilter::make('is_preview')
+                    ->label('Mode')
+                    ->placeholder('Tous')
+                    ->trueLabel('Prévisualisation')
+                    ->falseLabel('Production'),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+
+                Tables\Actions\Action::make('activate')
+                    ->label('Activer')
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->visible(fn (DemoSimulation $record): bool => !$record->is_active)
+                    ->action(function (DemoSimulation $record) {
+                        $service = new DemoSimulationService();
+                        $service->activateSimulation($record);
+                        Notification::make()
+                            ->success()
+                            ->title('Simulation activée')
+                            ->body('Cette simulation est maintenant active pour l\'utilisateur')
+                            ->send();
+                    }),
+
+                Tables\Actions\Action::make('deactivate')
+                    ->label('Désactiver')
+                    ->icon('heroicon-o-x-circle')
+                    ->color('danger')
+                    ->requiresConfirmation()
+                    ->visible(fn (DemoSimulation $record): bool => $record->is_active)
+                    ->action(function (DemoSimulation $record) {
+                        $service = new DemoSimulationService();
+                        $service->deactivateSimulation($record);
+                        Notification::make()
+                            ->success()
+                            ->title('Simulation désactivée')
+                            ->send();
+                    }),
+
+                Tables\Actions\EditAction::make()
+                    ->visible(fn (DemoSimulation $record): bool => !$record->is_active),
+
+                Tables\Actions\DeleteAction::make()
+                    ->visible(fn (DemoSimulation $record): bool => !$record->is_active),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ])
+            ->defaultSort('created_at', 'desc');
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListDemoSimulations::route('/'),
+            'create' => Pages\CreateDemoSimulation::route('/create'),
+            'edit' => Pages\EditDemoSimulation::route('/{record}/edit'),
+            'view' => Pages\ViewDemoSimulation::route('/{record}'),
+        ];
+    }
+}

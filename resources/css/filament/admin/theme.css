@@ -1,0 +1,64 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+
+@config '../../../../tailwind.config.js';
+
+/* Égaliser la hauteur des widgets de table côte à côte */
+[class*="ConfiguredGamesWidget"],
+[class*="UnconfiguredGamesWidget"] {
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+[class*="ConfiguredGamesWidget"] > div,
+[class*="UnconfiguredGamesWidget"] > div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+[class*="ConfiguredGamesWidget"] .fi-section,
+[class*="UnconfiguredGamesWidget"] .fi-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 600px;
+}
+
+[class*="ConfiguredGamesWidget"] .fi-section > div,
+[class*="UnconfiguredGamesWidget"] .fi-section > div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Assurer que les contenus des tables prennent tout l'espace disponible */
+[class*="ConfiguredGamesWidget"] .fi-ta-ctn,
+[class*="UnconfiguredGamesWidget"] .fi-ta-ctn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Carousel animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
