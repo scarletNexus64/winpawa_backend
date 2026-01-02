@@ -32,9 +32,12 @@ class ConfiguredGamesWidget extends BaseWidget
             )
             ->striped()
             ->columns([
-                Tables\Columns\ImageColumn::make('thumbnail')
+                Tables\Columns\ImageColumn::make('image')
                     ->label('')
                     ->circular()
+                    ->getStateUsing(function ($record) {
+                        return $record->image ? url('images/' . $record->image) : url('/images/logo.png');
+                    })
                     ->size(40),
 
                 Tables\Columns\TextColumn::make('name')

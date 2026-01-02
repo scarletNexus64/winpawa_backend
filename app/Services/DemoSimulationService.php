@@ -2,194 +2,345 @@
 
 namespace App\Services;
 
-use App\Models\DemoSimulation;
+use App\Models\DemoConfiguration;
+use App\Models\DemoSimulatedData;
+use App\Models\Game;
 use Carbon\Carbon;
-use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\DB;
 
 class DemoSimulationService
 {
     /**
-     * Générer les données de simulation basées sur le scénario
+     * Generate simulated data for a demo configuration
      */
-    public function generateSimulationData(DemoSimulation $simulation): array
+    public function generateData(DemoConfiguration $config, ?Carbon $startDate = null, ?Carbon $endDate = null): array
     {
-        $period = CarbonPeriod::create($simulation->start_date, $simulation->end_date);
-        $days = $period->count();
+        $startDate = $startDate ?? $config->start_date;
+        $endDate = $endDate ?? ($config->end_date ?? now());
 
-        // Configuration par défaut
-        $config = $simulation->scenario_config ?? [];
-        $avgBetsPerDay = $config['avg_bets_per_day'] ?? 10;
-        $avgBetAmount = $config['avg_bet_amount'] ?? 1000;
-        $variance = $config['variance'] ?? 0.3; // 30% de variance
+        $generatedData = [];
+        $currentDate = $startDate->copy();
 
-        $dailyData = [];
-        $totalBets = 0;
-        $totalWon = 0;
-        $totalLost = 0;
-        $betsWon = 0;
-        $betsLost = 0;
-        $gamesPlayed = 0;
+        while ($currentDate->lte($endDate)) {
+            $dailyData = $this->generateDailyData($config, $currentDate);
+            $generatedData[] = $dailyData;
 
-        foreach ($period as $date) {
-            $dayBets = $this->randomWithVariance($avgBetsPerDay, $variance);
-            $dayGames = max(1, intval($dayBets / 2)); // En moyenne 2 paris par jeu
+            $currentDate->addDay();
+        }
 
-            // Calculer les gains/pertes selon le type de scénario
-            $dayData = $this->calculateDayData(
-                $simulation->scenario_type,
-                $dayBets,
-                $avgBetAmount,
-                $variance
-            );
+        return $generatedData;
+    }
 
-            $totalBets += $dayBets;
-            $betsWon += $dayData['bets_won'];
-            $betsLost += $dayData['bets_lost'];
-            $totalWon += $dayData['amount_won'];
-            $totalLost += $dayData['amount_lost'];
-            $gamesPlayed += $dayGames;
+    /**
+     * Generate daily simulated data
+     */
+    protected function generateDailyData(DemoConfiguration $config, Carbon $date): DemoSimulatedData
+    {
+        $games = $config->games();
+        if ($games->isEmpty()) {
+            $games = Game::where('is_active', true)->limit(5)->get();
+        }
 
-            $dailyData[] = [
-                'date' => $date->format('Y-m-d'),
-                'bets' => $dayBets,
-                'games' => $dayGames,
-                'bets_won' => $dayData['bets_won'],
-                'bets_lost' => $dayData['bets_lost'],
-                'amount_won' => round($dayData['amount_won'], 2),
-                'amount_lost' => round($dayData['amount_lost'], 2),
-                'net_profit' => round($dayData['amount_won'] - $dayData['amount_lost'], 2),
+        $dailyBetCount = $config->daily_bet_count;
+        $totalBetAmount = 0;
+        $totalWinAmount = 0;
+        $totalLossAmount = 0;
+        $winCount = 0;
+        $lossCount = 0;
+        $hourlyData = [];
+        $gameBreakdown = [];
+
+        // Generate hourly data
+        for ($hour = 0; $hour < 24; $hour++) {
+            $hourlyBets = $this->getHourlyBetCount($hour, $dailyBetCount);
+            $hourlyData[$hour] = [
+                'hour' => $hour,
+                'bet_count' => $hourlyBets,
+                'total_bet' => 0,
+                'total_win' => 0,
+                'total_loss' => 0,
             ];
         }
 
-        $totalAmount = $totalWon + $totalLost;
-        $netProfit = $totalWon - $totalLost;
+        // Distribute bets across hours and games
+        for ($i = 0; $i < $dailyBetCount; $i++) {
+            $game = $games->random();
+            $hour = $this->getRandomHourWeighted();
 
-        return [
-            'total_bets' => $totalBets,
-            'bets_won' => $betsWon,
-            'bets_lost' => $betsLost,
-            'games_played' => $gamesPlayed,
-            'total_amount' => round($totalAmount, 2),
-            'total_won' => round($totalWon, 2),
-            'total_lost' => round($totalLost, 2),
-            'net_profit' => round($netProfit, 2),
-            'daily_data' => $dailyData,
-        ];
-    }
+            $betAmount = $this->getRandomBetAmount($config);
+            $isWin = $this->shouldWin($config->win_rate);
 
-    /**
-     * Calculer les données pour une journée
-     */
-    protected function calculateDayData(string $scenarioType, int $bets, float $avgAmount, float $variance): array
-    {
-        $winRate = match($scenarioType) {
-            'gain' => 0.65, // 65% de paris gagnés
-            'perte' => 0.35, // 35% de paris gagnés
-            'mixte' => 0.50, // 50% de paris gagnés
-            default => 0.50,
-        };
-
-        $betsWon = 0;
-        $amountWon = 0;
-        $amountLost = 0;
-
-        for ($i = 0; $i < $bets; $i++) {
-            $betAmount = $this->randomWithVariance($avgAmount, $variance);
-            $isWin = (mt_rand() / mt_getrandmax()) < $winRate;
+            $totalBetAmount += $betAmount;
 
             if ($isWin) {
-                $betsWon++;
-                // Les gains sont généralement 1.5x à 3x la mise
-                $multiplier = 1.5 + (mt_rand() / mt_getrandmax()) * 1.5;
-                $amountWon += $betAmount * $multiplier;
-                $amountLost += $betAmount; // La mise initiale
+                $multiplier = $this->getRandomMultiplier($config);
+                $winAmount = $betAmount * $multiplier;
+                $totalWinAmount += $winAmount;
+                $winCount++;
+
+                $hourlyData[$hour]['total_win'] += $winAmount;
             } else {
-                $amountLost += $betAmount;
+                $totalLossAmount += $betAmount;
+                $lossCount++;
+
+                $hourlyData[$hour]['total_loss'] += $betAmount;
+            }
+
+            $hourlyData[$hour]['total_bet'] += $betAmount;
+
+            // Track game breakdown
+            if (!isset($gameBreakdown[$game->id])) {
+                $gameBreakdown[$game->id] = [
+                    'game_id' => $game->id,
+                    'game_name' => $game->name,
+                    'bet_count' => 0,
+                    'total_bet' => 0,
+                    'total_win' => 0,
+                    'total_loss' => 0,
+                ];
+            }
+
+            $gameBreakdown[$game->id]['bet_count']++;
+            $gameBreakdown[$game->id]['total_bet'] += $betAmount;
+
+            if ($isWin) {
+                $gameBreakdown[$game->id]['total_win'] += $winAmount;
+            } else {
+                $gameBreakdown[$game->id]['total_loss'] += $betAmount;
             }
         }
 
-        return [
-            'bets_won' => $betsWon,
-            'bets_lost' => $bets - $betsWon,
-            'amount_won' => $amountWon,
-            'amount_lost' => $amountLost,
+        $netAmount = $totalWinAmount - $totalLossAmount;
+        $winRateActual = $dailyBetCount > 0 ? ($winCount / $dailyBetCount) * 100 : 0;
+
+        // Create or update simulated data
+        return DemoSimulatedData::updateOrCreate(
+            [
+                'demo_configuration_id' => $config->id,
+                'user_id' => $config->user_id,
+                'date' => $date,
+                'period_type' => 'daily',
+            ],
+            [
+                'total_bet_amount' => $totalBetAmount,
+                'total_win_amount' => $totalWinAmount,
+                'total_loss_amount' => $totalLossAmount,
+                'net_amount' => $netAmount,
+                'bet_count' => $dailyBetCount,
+                'win_count' => $winCount,
+                'loss_count' => $lossCount,
+                'win_rate_actual' => round($winRateActual, 2),
+                'hourly_data' => array_values($hourlyData),
+                'game_breakdown' => array_values($gameBreakdown),
+            ]
+        );
+    }
+
+    /**
+     * Get hourly bet count distribution (more activity during peak hours)
+     */
+    protected function getHourlyBetCount(int $hour, int $dailyTotal): int
+    {
+        // Peak hours: 12-14h and 18-23h
+        $weights = [
+            0 => 0.5, 1 => 0.3, 2 => 0.2, 3 => 0.1, 4 => 0.1, 5 => 0.2,
+            6 => 0.5, 7 => 0.8, 8 => 1.0, 9 => 1.2, 10 => 1.5, 11 => 1.8,
+            12 => 2.0, 13 => 2.0, 14 => 1.8, 15 => 1.5, 16 => 1.8, 17 => 2.0,
+            18 => 2.5, 19 => 3.0, 20 => 3.5, 21 => 3.0, 22 => 2.5, 23 => 1.5,
         ];
+
+        $totalWeight = array_sum($weights);
+        return (int) round(($weights[$hour] / $totalWeight) * $dailyTotal);
     }
 
     /**
-     * Générer un nombre aléatoire avec variance
+     * Get random hour with weighted distribution
      */
-    protected function randomWithVariance(float $base, float $variance): int|float
+    protected function getRandomHourWeighted(): int
     {
-        $min = $base * (1 - $variance);
-        $max = $base * (1 + $variance);
-        return $min + (mt_rand() / mt_getrandmax()) * ($max - $min);
-    }
+        $weights = [
+            0 => 0.5, 1 => 0.3, 2 => 0.2, 3 => 0.1, 4 => 0.1, 5 => 0.2,
+            6 => 0.5, 7 => 0.8, 8 => 1.0, 9 => 1.2, 10 => 1.5, 11 => 1.8,
+            12 => 2.0, 13 => 2.0, 14 => 1.8, 15 => 1.5, 16 => 1.8, 17 => 2.0,
+            18 => 2.5, 19 => 3.0, 20 => 3.5, 21 => 3.0, 22 => 2.5, 23 => 1.5,
+        ];
 
-    /**
-     * Obtenir les données de graphique formatées
-     */
-    public function getChartData(DemoSimulation $simulation): array
-    {
-        $dailyData = $simulation->daily_data ?? [];
+        $totalWeight = array_sum($weights);
+        $random = mt_rand(0, (int) ($totalWeight * 100)) / 100;
 
-        $labels = [];
-        $profitData = [];
-        $betsData = [];
-        $winRateData = [];
-
-        foreach ($dailyData as $day) {
-            $labels[] = Carbon::parse($day['date'])->format('d/m');
-            $profitData[] = $day['net_profit'];
-            $betsData[] = $day['bets'];
-
-            $totalDayBets = $day['bets_won'] + $day['bets_lost'];
-            $winRateData[] = $totalDayBets > 0 ? round(($day['bets_won'] / $totalDayBets) * 100, 1) : 0;
+        $sum = 0;
+        foreach ($weights as $hour => $weight) {
+            $sum += $weight;
+            if ($random <= $sum) {
+                return $hour;
+            }
         }
 
-        return [
-            'labels' => $labels,
-            'datasets' => [
-                [
-                    'label' => 'Profit Net (FCFA)',
-                    'data' => $profitData,
-                    'borderColor' => 'rgb(75, 192, 192)',
-                    'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
-                ],
-                [
-                    'label' => 'Nombre de Paris',
-                    'data' => $betsData,
-                    'borderColor' => 'rgb(54, 162, 235)',
-                    'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
-                ],
-                [
-                    'label' => 'Taux de Réussite (%)',
-                    'data' => $winRateData,
-                    'borderColor' => 'rgb(255, 206, 86)',
-                    'backgroundColor' => 'rgba(255, 206, 86, 0.2)',
-                ],
+        return 12; // Default to noon
+    }
+
+    /**
+     * Get random bet amount
+     */
+    protected function getRandomBetAmount(DemoConfiguration $config): float
+    {
+        $min = $config->min_bet;
+        $max = $config->max_bet;
+
+        // Use log distribution to favor smaller bets
+        $logMin = log($min);
+        $logMax = log($max);
+        $random = mt_rand() / mt_getrandmax();
+
+        return round(exp($logMin + ($random * ($logMax - $logMin))), 2);
+    }
+
+    /**
+     * Determine if bet should win based on win rate
+     */
+    protected function shouldWin(float $winRate): bool
+    {
+        return (mt_rand(1, 10000) / 100) <= $winRate;
+    }
+
+    /**
+     * Get random win multiplier
+     */
+    protected function getRandomMultiplier(DemoConfiguration $config): float
+    {
+        $min = $config->min_win_multiplier;
+        $max = $config->max_win_multiplier;
+
+        // Use exponential distribution to favor smaller multipliers
+        $random = mt_rand() / mt_getrandmax();
+        $exponential = pow($random, 2); // Square to favor lower values
+
+        return round($min + ($exponential * ($max - $min)), 2);
+    }
+
+    /**
+     * Generate weekly aggregated data from daily data
+     */
+    public function generateWeeklyData(DemoConfiguration $config, Carbon $weekStart): ?DemoSimulatedData
+    {
+        $weekEnd = $weekStart->copy()->addDays(6);
+
+        $dailyData = DemoSimulatedData::forConfiguration($config->id)
+            ->dateRange($weekStart, $weekEnd)
+            ->periodType('daily')
+            ->get();
+
+        if ($dailyData->isEmpty()) {
+            return null;
+        }
+
+        $totals = $this->aggregateData($dailyData);
+
+        return DemoSimulatedData::updateOrCreate(
+            [
+                'demo_configuration_id' => $config->id,
+                'user_id' => $config->user_id,
+                'date' => $weekStart,
+                'period_type' => 'weekly',
             ],
+            $totals
+        );
+    }
+
+    /**
+     * Generate monthly aggregated data from daily data
+     */
+    public function generateMonthlyData(DemoConfiguration $config, Carbon $monthStart): ?DemoSimulatedData
+    {
+        $monthEnd = $monthStart->copy()->endOfMonth();
+
+        $dailyData = DemoSimulatedData::forConfiguration($config->id)
+            ->dateRange($monthStart, $monthEnd)
+            ->periodType('daily')
+            ->get();
+
+        if ($dailyData->isEmpty()) {
+            return null;
+        }
+
+        $totals = $this->aggregateData($dailyData);
+
+        return DemoSimulatedData::updateOrCreate(
+            [
+                'demo_configuration_id' => $config->id,
+                'user_id' => $config->user_id,
+                'date' => $monthStart,
+                'period_type' => 'monthly',
+            ],
+            $totals
+        );
+    }
+
+    /**
+     * Aggregate daily data into totals
+     */
+    protected function aggregateData($dataCollection): array
+    {
+        $totalBetAmount = $dataCollection->sum('total_bet_amount');
+        $totalWinAmount = $dataCollection->sum('total_win_amount');
+        $totalLossAmount = $dataCollection->sum('total_loss_amount');
+        $betCount = $dataCollection->sum('bet_count');
+        $winCount = $dataCollection->sum('win_count');
+        $lossCount = $dataCollection->sum('loss_count');
+
+        $winRateActual = $betCount > 0 ? ($winCount / $betCount) * 100 : 0;
+
+        return [
+            'total_bet_amount' => $totalBetAmount,
+            'total_win_amount' => $totalWinAmount,
+            'total_loss_amount' => $totalLossAmount,
+            'net_amount' => $totalWinAmount - $totalLossAmount,
+            'bet_count' => $betCount,
+            'win_count' => $winCount,
+            'loss_count' => $lossCount,
+            'win_rate_actual' => round($winRateActual, 2),
         ];
     }
 
     /**
-     * Activer une simulation (désactive automatiquement les autres)
+     * Delete all simulated data for a configuration
      */
-    public function activateSimulation(DemoSimulation $simulation): void
+    public function clearData(DemoConfiguration $config): int
     {
-        $simulation->update([
-            'is_active' => true,
-            'is_preview' => false,
-        ]);
+        return DemoSimulatedData::forConfiguration($config->id)->delete();
     }
 
     /**
-     * Désactiver une simulation
+     * Get statistics for a configuration
      */
-    public function deactivateSimulation(DemoSimulation $simulation): void
+    public function getStatistics(DemoConfiguration $config, string $periodType = 'daily'): array
     {
-        $simulation->update([
-            'is_active' => false,
-        ]);
+        $data = DemoSimulatedData::forConfiguration($config->id)
+            ->periodType($periodType)
+            ->orderBy('date')
+            ->get();
+
+        return [
+            'total_bet_amount' => $data->sum('total_bet_amount'),
+            'total_win_amount' => $data->sum('total_win_amount'),
+            'total_loss_amount' => $data->sum('total_loss_amount'),
+            'net_amount' => $data->sum('net_amount'),
+            'total_bets' => $data->sum('bet_count'),
+            'total_wins' => $data->sum('win_count'),
+            'total_losses' => $data->sum('loss_count'),
+            'average_win_rate' => $data->avg('win_rate_actual'),
+            'data_points' => $data->count(),
+            'chart_data' => $data->map(function ($item) {
+                return [
+                    'date' => $item->date->format('Y-m-d'),
+                    'bet_amount' => (float) $item->total_bet_amount,
+                    'win_amount' => (float) $item->total_win_amount,
+                    'loss_amount' => (float) $item->total_loss_amount,
+                    'net_amount' => (float) $item->net_amount,
+                    'bet_count' => $item->bet_count,
+                    'win_rate' => (float) $item->win_rate_actual,
+                ];
+            })->values()->all(),
+        ];
     }
 }

@@ -41,6 +41,8 @@
                                 <div class="relative group overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
                                     @if($game->banner)
                                         <img src="{{ Storage::url($game->banner) }}" alt="{{ $game->name }}" class="w-full h-64 object-cover">
+                                    @elseif($game->image)
+                                        <img src="{{ asset('images/' . $game->image) }}" alt="{{ $game->name }}" class="w-full h-64 object-cover">
                                     @elseif($game->thumbnail)
                                         <img src="{{ Storage::url($game->thumbnail) }}" alt="{{ $game->name }}" class="w-full h-64 object-cover">
                                     @else

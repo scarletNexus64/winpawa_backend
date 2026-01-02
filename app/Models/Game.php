@@ -22,6 +22,7 @@ class Game extends Model
         'description',
         'thumbnail',
         'banner',
+        'image',
         'rtp', // Return to Player (%)
         'win_frequency', // Fréquence de gains (%)
         'min_bet',
@@ -85,6 +86,16 @@ class Game extends Model
     }
 
     // ==================== ACCESSORS ====================
+
+    public function getImageUrlAttribute(): ?string
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        // Toutes les images sont maintenant dans public/images
+        return asset('images/' . $this->image);
+    }
 
     public function getHouseEdgeAttribute(): float
     {

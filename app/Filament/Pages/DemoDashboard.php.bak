@@ -1,0 +1,202 @@
+<?php
+
+namespace App\Filament\Pages;
+
+use App\Models\DemoConfiguration;
+use App\Models\DemoSimulatedData;
+use Filament\Pages\Page;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+use Carbon\Carbon;
+
+class DemoDashboard extends Page implements HasForms
+{
+    use InteractsWithForms;
+
+    protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-line';
+
+    protected static string $view = 'filament.pages.demo-dashboard';
+
+    protected static ?string $navigationLabel = 'Dashboard Démo';
+
+    protected static ?string $title = 'Dashboard de Simulation';
+
+    protected static ?string $navigationGroup = 'Démonstration';
+
+    protected static ?int $navigationSort = 2;
+
+    public ?int $selectedConfig = null;
+    public ?string $startDate = null;
+    public ?string $endDate = null;
+    public ?string $periodType = 'daily';
+
+    public function mount(): void
+    {
+        $this->startDate = now()->subDays(30)->format('Y-m-d');
+        $this->endDate = now()->format('Y-m-d');
+
+        // Select first active config by default
+        $firstConfig = DemoConfiguration::where('is_active', true)->first();
+        $this->selectedConfig = $firstConfig?->id;
+
+        $this->form->fill([
+            'config_id' => $this->selectedConfig,
+            'start_date' => $this->startDate,
+            'end_date' => $this->endDate,
+            'period_type' => $this->periodType,
+        ]);
+    }
+
+    public function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Select::make('config_id')
+                    ->label('Configuration')
+                    ->options(DemoConfiguration::all()->pluck('name', 'id'))
+                    ->live()
+                    ->afterStateUpdated(function ($state) {
+                        $this->selectedConfig = $state;
+                    }),
+                Select::make('period_type')
+                    ->label('Période')
+                    ->options([
+                        'daily' => 'Quotidien',
+                        'weekly' => 'Hebdomadaire',
+                        'monthly' => 'Mensuel',
+                    ])
+                    ->live()
+                    ->afterStateUpdated(function ($state) {
+                        $this->periodType = $state;
+                    }),
+                DatePicker::make('start_date')
+                    ->label('Date début')
+                    ->live()
+                    ->afterStateUpdated(function ($state) {
+                        $this->startDate = $state;
+                    }),
+                DatePicker::make('end_date')
+                    ->label('Date fin')
+                    ->live()
+                    ->afterStateUpdated(function ($state) {
+                        $this->endDate = $state;
+                    }),
+            ])
+            ->columns(4);
+    }
+
+    public function getStats(): array
+    {
+        if (!$this->selectedConfig) {
+            return [
+                'total_bets' => 0,
+                'total_wins' => 0,
+                'total_losses' => 0,
+                'total_bet_amount' => 0,
+                'total_win_amount' => 0,
+                'total_loss_amount' => 0,
+                'net_amount' => 0,
+                'avg_win_rate' => 0,
+            ];
+        }
+
+        $query = DemoSimulatedData::where('demo_configuration_id', $this->selectedConfig)
+            ->where('period_type', $this->periodType);
+
+        if ($this->startDate) {
+            $query->where('date', '>=', $this->startDate);
+        }
+
+        if ($this->endDate) {
+            $query->where('date', '<=', $this->endDate);
+        }
+
+        $data = $query->get();
+
+        $totalBets = $data->sum('bet_count');
+        $totalWins = $data->sum('win_count');
+        $totalLosses = $data->sum('loss_count');
+
+        return [
+            'total_bets' => $totalBets,
+            'total_wins' => $totalWins,
+            'total_losses' => $totalLosses,
+            'total_bet_amount' => $data->sum('total_bet_amount'),
+            'total_win_amount' => $data->sum('total_win_amount'),
+            'total_loss_amount' => $data->sum('total_loss_amount'),
+            'net_amount' => $data->sum('net_amount'),
+            'avg_win_rate' => $totalBets > 0 ? ($totalWins / $totalBets) * 100 : 0,
+        ];
+    }
+
+    public function getChartData(): array
+    {
+        if (!$this->selectedConfig) {
+            return [
+                'labels' => [],
+                'datasets' => [],
+            ];
+        }
+
+        $query = DemoSimulatedData::where('demo_configuration_id', $this->selectedConfig)
+            ->where('period_type', $this->periodType)
+            ->orderBy('date');
+
+        if ($this->startDate) {
+            $query->where('date', '>=', $this->startDate);
+        }
+
+        if ($this->endDate) {
+            $query->where('date', '<=', $this->endDate);
+        }
+
+        $data = $query->get();
+
+        return [
+            'labels' => $data->map(fn($item) => Carbon::parse($item->date)->format('d/m/Y'))->toArray(),
+            'datasets' => [
+                [
+                    'label' => 'Mises',
+                    'data' => $data->pluck('total_bet_amount')->map(fn($val) => (float)$val)->toArray(),
+                    'borderColor' => '#3b82f6',
+                    'backgroundColor' => 'rgba(59, 130, 246, 0.1)',
+                    'fill' => true,
+                    'tension' => 0.4,
+                ],
+                [
+                    'label' => 'Gains',
+                    'data' => $data->pluck('total_win_amount')->map(fn($val) => (float)$val)->toArray(),
+                    'borderColor' => '#10b981',
+                    'backgroundColor' => 'rgba(16, 185, 129, 0.1)',
+                    'fill' => true,
+                    'tension' => 0.4,
+                ],
+                [
+                    'label' => 'Pertes',
+                    'data' => $data->pluck('total_loss_amount')->map(fn($val) => (float)$val)->toArray(),
+                    'borderColor' => '#ef4444',
+                    'backgroundColor' => 'rgba(239, 68, 68, 0.1)',
+                    'fill' => true,
+                    'tension' => 0.4,
+                ],
+                [
+                    'label' => 'Net',
+                    'data' => $data->pluck('net_amount')->map(fn($val) => (float)$val)->toArray(),
+                    'borderColor' => '#d946ef',
+                    'backgroundColor' => 'rgba(217, 70, 239, 0.1)',
+                    'fill' => true,
+                    'tension' => 0.4,
+                    'borderWidth' => 3,
+                ],
+            ],
+        ];
+    }
+
+    public function getConfiguration(): ?DemoConfiguration
+    {
+        return $this->selectedConfig ? DemoConfiguration::find($this->selectedConfig) : null;
+    }
+}

@@ -96,6 +96,34 @@ class GameResource extends Resource
                             ->columnSpanFull(),
                     ])->columns(4),
 
+                Forms\Components\Section::make('Image du jeu')
+                    ->description('Téléchargez ou sélectionnez une image pour ce jeu')
+                    ->icon('heroicon-o-photo')
+                    ->schema([
+                        Forms\Components\ViewField::make('current_image')
+                            ->label('Image actuelle')
+                            ->view('filament.forms.components.game-image-preview')
+                            ->visible(fn ($record) => $record && $record->image)
+                            ->columnSpanFull(),
+
+                        Forms\Components\FileUpload::make('new_image')
+                            ->label('Télécharger une nouvelle image (laissez vide pour garder l\'actuelle)')
+                            ->image()
+                            ->disk('game_images')
+                            ->imageResizeTargetWidth('800')
+                            ->imageResizeTargetHeight('800')
+                            ->maxSize(2048)
+                            ->helperText('Format recommandé : 800x800px (max 2MB). Formats acceptés : PNG, JPG, WEBP')
+                            ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/jpg', 'image/webp'])
+                            ->afterStateUpdated(function ($state, callable $set) {
+                                if ($state) {
+                                    $set('image', $state);
+                                }
+                            })
+                            ->dehydrated(false)
+                            ->columnSpanFull(),
+                    ]),
+
                 Forms\Components\Section::make('Configuration RNG')
                     ->description('Paramètres de rentabilité et de gains')
                     ->icon('heroicon-o-cog-6-tooth')
@@ -190,6 +218,14 @@ class GameResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Image')
+                    ->circular()
+                    ->getStateUsing(function ($record) {
+                        return $record->image ? url('images/' . $record->image) : url('/images/logo.png');
+                    })
+                    ->size(60),
+
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nom')
                     ->searchable()

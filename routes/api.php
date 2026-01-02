@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\GameController;
+use App\Http\Controllers\Api\SportController;
 use App\Http\Controllers\Api\WalletController;
 use App\Http\Controllers\Api\AffiliateController;
 use App\Http\Controllers\Api\VirtualMatchController;
@@ -19,10 +21,23 @@ Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 });
 
+// Public categories list
+Route::get('categories', [CategoryController::class, 'index']);
+Route::get('categories/{category:slug}', [CategoryController::class, 'show']);
+
 // Public games list
 Route::get('games', [GameController::class, 'index']);
 Route::get('games/featured', [GameController::class, 'featured']);
 Route::get('games/{game:slug}', [GameController::class, 'show']);
+
+// Public sports routes
+Route::prefix('sports')->group(function () {
+    Route::get('categories', [SportController::class, 'categories']);
+    Route::get('', [SportController::class, 'sports']);
+    Route::get('matches', [SportController::class, 'matches']);
+    Route::get('matches/live', [SportController::class, 'liveMatches']);
+    Route::get('{sportSlug}/matches', [SportController::class, 'matches']);
+});
 
 // Virtual Match public
 Route::prefix('virtual-match')->group(function () {

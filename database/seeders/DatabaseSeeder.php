@@ -10,6 +10,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminSeeder::class,
+            GameModuleSeeder::class,
+            GameCategorySeeder::class,
             GameSeeder::class,
         ]);
     }
