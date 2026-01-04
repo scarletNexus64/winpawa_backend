@@ -22,6 +22,22 @@ class RngService
             $result = $isWinner
                 ? $this->generateWinningScratchCard($hash)
                 : $this->generateLosingScratchCard($hash);
+        } elseif ($game->type === GameType::COIN_FLIP) {
+            // Pour Pile ou Face : si isWinner, retourner le choix du joueur
+            // Sinon, retourner l'opposé
+            if ($isWinner) {
+                $result = strtolower($bet->choice); // heads ou tails (choix du joueur)
+            } else {
+                // Retourner l'opposé du choix
+                $result = strtolower($bet->choice) === 'heads' ? 'tails' : 'heads';
+            }
+        } elseif ($game->type === GameType::DICE) {
+            // Pour le Dé : si isWinner, générer un résultat qui correspond au choix
+            if ($isWinner) {
+                $result = $this->generateWinningDiceResult($bet->choice, $hash);
+            } else {
+                $result = $this->generateLosingDiceResult($bet->choice, $hash);
+            }
         } else {
             // Générer le résultat spécifique au type de jeu
             $result = $this->generateGameSpecificResult($game, $bet->choice, $hash);
@@ -67,6 +83,52 @@ class RngService
     {
         $value = hexdec(substr($hash, 8, 2)) % 2;
         return $value === 0 ? 'heads' : 'tails';
+    }
+
+    /**
+     * Générer un résultat de dé GAGNANT selon le choix du joueur
+     */
+    protected function generateWinningDiceResult(string $choice, string $hash): string
+    {
+        if ($choice === 'odd') {
+            // Retourner un nombre impair (1, 3, 5)
+            $oddNumbers = [1, 3, 5];
+            $index = hexdec(substr($hash, 8, 2)) % count($oddNumbers);
+            return (string) $oddNumbers[$index];
+        } elseif ($choice === 'even') {
+            // Retourner un nombre pair (2, 4, 6)
+            $evenNumbers = [2, 4, 6];
+            $index = hexdec(substr($hash, 8, 2)) % count($evenNumbers);
+            return (string) $evenNumbers[$index];
+        } else {
+            // Le joueur a choisi un numéro spécifique, retourner ce numéro
+            return $choice;
+        }
+    }
+
+    /**
+     * Générer un résultat de dé PERDANT selon le choix du joueur
+     */
+    protected function generateLosingDiceResult(string $choice, string $hash): string
+    {
+        if ($choice === 'odd') {
+            // Retourner un nombre pair (2, 4, 6)
+            $evenNumbers = [2, 4, 6];
+            $index = hexdec(substr($hash, 8, 2)) % count($evenNumbers);
+            return (string) $evenNumbers[$index];
+        } elseif ($choice === 'even') {
+            // Retourner un nombre impair (1, 3, 5)
+            $oddNumbers = [1, 3, 5];
+            $index = hexdec(substr($hash, 8, 2)) % count($oddNumbers);
+            return (string) $oddNumbers[$index];
+        } else {
+            // Le joueur a choisi un numéro spécifique, retourner un autre numéro
+            $allNumbers = [1, 2, 3, 4, 5, 6];
+            $otherNumbers = array_diff($allNumbers, [(int) $choice]);
+            $otherNumbers = array_values($otherNumbers); // Réindexer
+            $index = hexdec(substr($hash, 8, 2)) % count($otherNumbers);
+            return (string) $otherNumbers[$index];
+        }
     }
 
     protected function diceResult(string $hash): string
