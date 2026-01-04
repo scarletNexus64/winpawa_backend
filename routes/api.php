@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SportController;
 use App\Http\Controllers\Api\WalletController;
 use App\Http\Controllers\Api\AffiliateController;
 use App\Http\Controllers\Api\VirtualMatchController;
+use App\Http\Controllers\Api\LegalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,12 @@ Route::prefix('virtual-match')->group(function () {
     Route::get('upcoming', [VirtualMatchController::class, 'upcoming']);
     Route::get('live', [VirtualMatchController::class, 'live']);
     Route::get('results', [VirtualMatchController::class, 'results']);
+});
+
+// Legal pages (public)
+Route::prefix('legal')->group(function () {
+    Route::get('/', [LegalController::class, 'index']);
+    Route::get('{type}', [LegalController::class, 'show']);
 });
 
 // Protected routes

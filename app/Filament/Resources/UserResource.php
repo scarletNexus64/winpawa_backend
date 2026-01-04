@@ -125,6 +125,43 @@ class UserResource extends Resource
                             ->columnSpanFull(),
                     ]),
 
+                Forms\Components\Section::make('Portefeuille')
+                    ->description('Informations sur le solde de l\'utilisateur')
+                    ->icon('heroicon-o-banknotes')
+                    ->schema([
+                        Forms\Components\TextInput::make('wallet.main_balance')
+                            ->label('Solde principal')
+                            ->prefix('XAF')
+                            ->numeric()
+                            ->default(fn ($record) => $record?->wallet?->main_balance ?? 0)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                                $mainBalance = floatval($state ?? 0);
+                                $bonusBalance = floatval($get('wallet.bonus_balance') ?? 0);
+                                $set('wallet.total_balance', $mainBalance + $bonusBalance);
+                            }),
+
+                        Forms\Components\TextInput::make('wallet.bonus_balance')
+                            ->label('Solde bonus')
+                            ->prefix('XAF')
+                            ->numeric()
+                            ->default(fn ($record) => $record?->wallet?->bonus_balance ?? 0)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                                $bonusBalance = floatval($state ?? 0);
+                                $mainBalance = floatval($get('wallet.main_balance') ?? 0);
+                                $set('wallet.total_balance', $mainBalance + $bonusBalance);
+                            }),
+
+                        Forms\Components\TextInput::make('wallet.total_balance')
+                            ->label('Solde total')
+                            ->disabled()
+                            ->dehydrated(false)
+                            ->prefix('XAF')
+                            ->numeric()
+                            ->default(fn ($record) => $record?->wallet?->total_balance ?? 0),
+                    ])->columns(3),
+
                 Forms\Components\Section::make('Affiliation')
                     ->description('Code de parrainage')
                     ->icon('heroicon-o-user-group')

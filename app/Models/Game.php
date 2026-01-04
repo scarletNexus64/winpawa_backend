@@ -51,6 +51,24 @@ class Game extends Model
         'is_maintenance' => 'boolean',
     ];
 
+    // ==================== BOOT ====================
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Automatically regenerate roulette prizes when multipliers change
+        static::saving(function ($game) {
+            if ($game->type === GameType::ROULETTE && $game->isDirty('multipliers')) {
+                $multipliers = $game->multipliers ?? [2, 5, 10];
+                $currentSettings = $game->settings ?? [];
+                $currentSettings['prizes'] = self::generateRoulettePrizes($multipliers);
+                $currentSettings['segments'] = count($multipliers);
+                $game->settings = $currentSettings;
+            }
+        });
+    }
+
     // ==================== RELATIONS ====================
 
     public function module(): BelongsTo
@@ -154,12 +172,31 @@ class Game extends Model
         return $betAmount * $multiplier;
     }
 
+    /**
+     * Generate roulette prizes from multipliers array
+     */
+    public static function generateRoulettePrizes(array $multipliers): array
+    {
+        $colors = ['#FF6B6B', '#4ECDC4', '#FFD93D', '#95E1D3', '#F38181', '#AA96DA', '#FCBAD3', '#FFA07A'];
+        $prizes = [];
+
+        foreach ($multipliers as $index => $multiplier) {
+            $segmentNumber = $index + 1;
+            $prizes[$segmentNumber] = [
+                'multiplier' => $multiplier,
+                'color' => $colors[$index % count($colors)],
+            ];
+        }
+
+        return $prizes;
+    }
+
     public static function getDefaultSettings(GameType $type): array
     {
         return match ($type) {
             GameType::ROULETTE => [
                 'segments' => 8,
-                'colors' => ['red', 'black', 'green'],
+                'prizes' => self::generateRoulettePrizes([2, 5, 10, 20, 2, 5, 10, 20]),
             ],
             GameType::SCRATCH_CARD => [
                 'cards_count' => 9,

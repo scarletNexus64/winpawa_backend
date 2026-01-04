@@ -87,8 +87,19 @@ class GameController extends Controller
         try {
             DB::beginTransaction();
 
+            // Solde avant
+            \Log::info('💰 Wallet AVANT:', [
+                'main' => $wallet->main_balance,
+                'bonus' => $wallet->bonus_balance,
+                'total' => $wallet->total_balance,
+            ]);
+
             // Débiter le wallet
             $wallet->debit($validated['amount'], 'bet');
+            \Log::info('💸 Après DÉBIT:', [
+                'amount' => $validated['amount'],
+                'total' => $wallet->fresh()->total_balance,
+            ]);
 
             // Créer le pari
             $bet = Bet::create([
@@ -101,6 +112,7 @@ class GameController extends Controller
 
             // Générer le résultat avec le RNG
             $result = $this->rngService->generateResult($game, $bet);
+            \Log::info('🎲 Résultat RNG:', $result);
 
             // Mettre à jour le pari
             $bet->update([
@@ -115,6 +127,12 @@ class GameController extends Controller
             // Créditer si gagnant
             if ($result['is_winner']) {
                 $wallet->credit($result['payout'], 'win');
+                \Log::info('✅ Après CRÉDIT:', [
+                    'payout' => $result['payout'],
+                    'total' => $wallet->fresh()->total_balance,
+                ]);
+            } else {
+                \Log::info('❌ PERTE - Pas de crédit');
             }
 
             // Mettre à jour le wagering du bonus si applicable
@@ -187,6 +205,7 @@ class GameController extends Controller
             'thumbnail' => $game->image ? url('images/' . $game->image) : null,
             'banner' => $game->banner ? url('storage/' . $game->banner) : null,
             'rtp' => (float) $game->rtp,
+            'win_frequency' => (float) $game->win_frequency, // ← AJOUTÉ
             'min_bet' => (float) $game->min_bet,
             'max_bet' => (float) $game->max_bet,
             'multipliers' => $game->multipliers,

@@ -21,4 +21,23 @@ class EditUser extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        // Extraire les données du wallet
+        if (isset($data['wallet'])) {
+            $walletData = $data['wallet'];
+            unset($data['wallet']);
+
+            // Sauvegarder les données du wallet
+            if ($this->record->wallet) {
+                $this->record->wallet->update([
+                    'main_balance' => $walletData['main_balance'] ?? $this->record->wallet->main_balance,
+                    'bonus_balance' => $walletData['bonus_balance'] ?? $this->record->wallet->bonus_balance,
+                ]);
+            }
+        }
+
+        return $data;
+    }
 }
