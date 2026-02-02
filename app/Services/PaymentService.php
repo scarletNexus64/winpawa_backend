@@ -3,11 +3,16 @@
 namespace App\Services;
 
 use App\Models\Transaction;
+use App\Services\Payment\CoinbaseService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class PaymentService
 {
+    public function __construct(
+        protected CoinbaseService $coinbaseService
+    ) {}
+
     public function initiateDeposit(Transaction $transaction, string $phone, string $method): array
     {
         return match ($method) {
@@ -15,6 +20,39 @@ class PaymentService
             'orange_money' => $this->initiateOrangeDeposit($transaction, $phone),
             default => ['success' => false, 'message' => 'Méthode de paiement non supportée'],
         };
+    }
+
+    /**
+     * Initier un dépôt via Coinbase Commerce
+     */
+    public function initiateCoinbaseDeposit(Transaction $transaction): array
+    {
+        try {
+            $result = $this->coinbaseService->createCharge($transaction);
+
+            if (!$result['success']) {
+                return $result;
+            }
+
+            return [
+                'success' => true,
+                'charge_id' => $result['charge_id'],
+                'hosted_url' => $result['hosted_url'],
+                'expires_at' => $result['expires_at'],
+                'coinbase_data' => $result,
+            ];
+
+        } catch (\Exception $e) {
+            Log::error('Coinbase deposit initiation failed', [
+                'transaction_id' => $transaction->id,
+                'error' => $e->getMessage()
+            ]);
+
+            return [
+                'success' => false,
+                'message' => 'Erreur lors de la création du paiement Coinbase: ' . $e->getMessage()
+            ];
+        }
     }
 
     protected function initiateMtnDeposit(Transaction $transaction, string $phone): array

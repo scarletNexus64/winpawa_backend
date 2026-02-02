@@ -12,15 +12,18 @@ class AdminNotificationSent extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public AdminNotification $adminNotification;
+    // public AdminNotification $adminNotification;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(AdminNotification $adminNotification)
-    {
-        $this->adminNotification = $adminNotification;
-    }
+    // /**
+    //  * Create a new notification instance.
+    //  */
+    // public function __construct(AdminNotification $adminNotification)
+    // {
+    //     $this->adminNotification = $adminNotification;
+    // }
+    public function __construct(
+        public AdminNotification $adminNotification
+    ){}
 
     /**
      * Get the notification's delivery channels.

@@ -43,8 +43,8 @@ class WalletController extends Controller
 
         $validated = $request->validate([
             'amount' => ['required', 'numeric', 'min:' . $minDeposit, 'max:' . $maxDeposit],
-            'payment_method' => ['required', 'in:mtn_momo,orange_money'],
-            'phone' => ['required', 'string'],
+            'payment_method' => ['required', 'in:mtn_momo,orange_money,coinbase'],
+            'phone' => ['required_if:payment_method,mtn_momo,orange_money', 'string', 'nullable'],
         ]);
 
         $user = $request->user();
@@ -65,28 +65,58 @@ class WalletController extends Controller
                 'balance_after' => $wallet->main_balance, // Sera mis à jour après confirmation
                 'status' => TransactionStatus::PENDING,
                 'payment_method' => $validated['payment_method'],
-                'description' => 'Dépôt via ' . ($validated['payment_method'] === 'mtn_momo' ? 'MTN Mobile Money' : 'Orange Money'),
+                'description' => 'Dépôt via ' . match ($validated['payment_method']) {
+                    'mtn_momo' => 'MTN Mobile Money',
+                    'orange_money' => 'Orange Money',
+                    'coinbase' => 'Coinbase Commerce (Crypto)',
+                    default => $validated['payment_method'],
+                },
                 'metadata' => [
-                    'phone' => $validated['phone'],
+                    'phone' => $validated['phone'] ?? null,
                 ],
             ]);
 
-            // Initier le paiement
-            $paymentResult = $this->paymentService->initiateDeposit(
-                $transaction,
-                $validated['phone'],
-                $validated['payment_method']
-            );
+            // Traitement selon la méthode de paiement
+            if ($validated['payment_method'] === 'coinbase') {
+                $paymentResult = $this->paymentService->initiateCoinbaseDeposit($transaction);
+            } else {
+                // Mobile Money (MTN/Orange)
+                $paymentResult = $this->paymentService->initiateDeposit(
+                    $transaction,
+                    $validated['phone'],
+                    $validated['payment_method']
+                );
+            }
 
             if (!$paymentResult['success']) {
                 throw new \Exception($paymentResult['message']);
             }
 
             $transaction->update([
-                'payment_reference' => $paymentResult['reference'],
+                'payment_reference' => $paymentResult['reference'] ?? $paymentResult['charge_id'] ?? null,
+                'metadata' => array_merge($transaction->metadata ?? [], [
+                    'coinbase_data' => $paymentResult['coinbase_data'] ?? null,
+                ]),
             ]);
 
             DB::commit();
+
+            // Réponse différente pour Coinbase (avec URL de paiement)
+            if ($validated['payment_method'] === 'coinbase') {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Page de paiement Coinbase générée.',
+                    'data' => [
+                        'transaction_id' => $transaction->id,
+                        'reference' => $transaction->reference,
+                        'amount' => (float) $transaction->amount,
+                        'status' => 'pending',
+                        'payment_url' => $paymentResult['hosted_url'],
+                        'expires_at' => $paymentResult['expires_at'] ?? null,
+                        'charge_id' => $paymentResult['charge_id'] ?? null,
+                    ],
+                ]);
+            }
 
             return response()->json([
                 'success' => true,

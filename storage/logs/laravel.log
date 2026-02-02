@@ -1,4 +1,196 @@
-[2026-01-02 14:56:26] local.ERROR: Command "tinker" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"tinker\" is not defined. at /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php:759)
+
+[2026-02-01 10:45:42] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"upcoming","starts_at":"2026-02-01T09:47:00.000000Z"} 
+[2026-02-01 10:45:42] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"upcoming"} 
+[2026-02-01 10:45:42] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"upcoming"} 
+[2026-02-01 10:47:00] local.INFO: 🎮 [Event] VirtualMatchStarted créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid"} 
+[2026-02-01 10:47:00] local.INFO: 📡 [Broadcast] VirtualMatchStarted data {"match":{"id":86,"reference":"VM-1SLDCUJM","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"live","score_home":0,"score_away":0,"starts_at":"2026-02-01T09:47:00.000000Z","ends_at":"2026-02-01T09:52:00.000000Z"}} 
+[2026-02-01 10:47:01] local.INFO: 🎮 [SimulateVirtualMatch] Démarrage de la simulation {"match_id":86,"reference":"VM-1SLDCUJM","duration":5} 
+[2026-02-01 10:47:01] local.INFO: 📋 [SimulateVirtualMatch] Événements configurés {"count":4,"events":[{"type":"yellow_card","minute":"2","team":"away","team_name":"Real Madrid","player":null,"timestamp":"2026-02-01T08:43:13.442977Z","event_type":"goal"},{"type":"goal","minute":"3","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:23.458237Z","event_type":"goal"},{"type":"goal","minute":"4","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:33.473565Z","event_type":"goal"},{"event_type":"goal","team":"home","minute":"5","player":null}]} 
+[2026-02-01 10:47:01] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 1/5  
+[2026-02-01 10:48:01] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 2/5  
+[2026-02-01 10:49:01] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":2,"type":"goal","team":"away","player":null} 
+[2026-02-01 10:49:01] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 0-1  
+[2026-02-01 10:49:01] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"0-1","event_type":"goal"} 
+[2026-02-01 10:49:01] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"0-1","has_event":true} 
+[2026-02-01 10:49:01] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"0-1","event":{"type":"goal","minute":2,"team":"away","team_name":"Real Madrid","player":"Pierre Dupont","timestamp":"2026-02-01T09:49:01.891698Z"}} 
+[2026-02-01 10:49:01] local.INFO: ⏸️ [SimulateVirtualMatch] MI-TEMPS ! Score: 0-1  
+[2026-02-01 10:49:01] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"0-1","event_type":"half_time"} 
+[2026-02-01 10:49:01] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"0-1","has_event":true} 
+[2026-02-01 10:49:01] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 3/5  
+[2026-02-01 10:50:01] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":3,"type":"goal","team":"home","player":null} 
+[2026-02-01 10:50:01] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 1-1  
+[2026-02-01 10:50:01] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"1-1","event_type":"goal"} 
+[2026-02-01 10:50:01] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"1-1","has_event":true} 
+[2026-02-01 10:50:01] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"1-1","event":{"type":"goal","minute":3,"team":"home","team_name":"Atletico Madrid","player":"Pierre Martin","timestamp":"2026-02-01T09:50:01.938616Z"}} 
+[2026-02-01 10:50:01] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 4/5  
+[2026-02-01 10:51:01] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":4,"type":"goal","team":"home","player":null} 
+[2026-02-01 10:51:01] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 2-1  
+[2026-02-01 10:51:01] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"2-1","event_type":"goal"} 
+[2026-02-01 10:51:01] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"2-1","has_event":true} 
+[2026-02-01 10:51:01] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"2-1","event":{"type":"goal","minute":4,"team":"home","team_name":"Atletico Madrid","player":"David Richard","timestamp":"2026-02-01T09:51:01.960476Z"}} 
+[2026-02-01 10:51:01] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 5/5  
+[2026-02-01 10:52:01] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":5,"type":"goal","team":"home","player":null} 
+[2026-02-01 10:52:01] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 3-1  
+[2026-02-01 10:52:01] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"3-1","event_type":"goal"} 
+[2026-02-01 10:52:01] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"3-1","has_event":true} 
+[2026-02-01 10:52:01] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"3-1","event":{"type":"goal","minute":5,"team":"home","team_name":"Atletico Madrid","player":"Pierre Thomas","timestamp":"2026-02-01T09:52:01.977892Z"}} 
+[2026-02-01 10:52:01] local.INFO: 🏁 [SimulateVirtualMatch] FIN DU MATCH ! Score final: 3-1  
+[2026-02-01 10:52:01] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":86,"reference":"VM-1SLDCUJM","final_score":"3-1","result":"home_win"} 
+[2026-02-01 10:52:01] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":86,"reference":"VM-1SLDCUJM","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"completed","score_home":3,"score_away":1,"score_first_half_home":0,"score_first_half_away":1,"result":"home_win","starts_at":"2026-02-01T09:47:00.000000Z","ends_at":"2026-02-01T09:52:01.000000Z","match_events":[{"type":"yellow_card","minute":"2","team":"away","team_name":"Real Madrid","player":null,"timestamp":"2026-02-01T08:43:13.442977Z","event_type":"goal"},{"type":"goal","minute":"3","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:23.458237Z","event_type":"goal"},{"type":"goal","minute":"4","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:33.473565Z","event_type":"goal"},{"event_type":"goal","team":"home","minute":"5","player":null},{"type":"goal","minute":2,"team":"away","team_name":"Real Madrid","player":"Pierre Dupont","timestamp":"2026-02-01T09:49:01.891698Z"},{"type":"goal","minute":3,"team":"home","team_name":"Atletico Madrid","player":"Pierre Martin","timestamp":"2026-02-01T09:50:01.938616Z"},{"type":"goal","minute":4,"team":"home","team_name":"Atletico Madrid","player":"David Richard","timestamp":"2026-02-01T09:51:01.960476Z"},{"type":"goal","minute":5,"team":"home","team_name":"Atletico Madrid","player":"Pierre Thomas","timestamp":"2026-02-01T09:52:01.977892Z"}]}} 
+[2026-02-01 11:18:25] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"upcoming","starts_at":"2026-02-01T10:20:00.000000Z"} 
+[2026-02-01 11:18:25] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"upcoming"} 
+[2026-02-01 11:18:25] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"upcoming"} 
+[2026-02-01 11:20:00] local.INFO: 🎮 [Event] VirtualMatchStarted créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid"} 
+[2026-02-01 11:20:00] local.INFO: 📡 [Broadcast] VirtualMatchStarted data {"match":{"id":86,"reference":"VM-1SLDCUJM","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"live","score_home":0,"score_away":0,"starts_at":"2026-02-01T10:20:00.000000Z","ends_at":"2026-02-01T10:24:00.000000Z"}} 
+[2026-02-01 11:20:03] local.INFO: 🎮 [SimulateVirtualMatch] Démarrage de la simulation {"match_id":86,"reference":"VM-1SLDCUJM","duration":5} 
+[2026-02-01 11:20:03] local.INFO: 📋 [SimulateVirtualMatch] Événements configurés {"count":4,"events":[{"type":"yellow_card","minute":"2","team":"away","team_name":"Real Madrid","player":null,"timestamp":"2026-02-01T08:43:13.442977Z","event_type":"goal"},{"type":"goal","minute":"3","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:23.458237Z","event_type":"goal"},{"type":"goal","minute":"4","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:33.473565Z","event_type":"goal"},{"event_type":"goal","team":"home","minute":"5","player":null}]} 
+[2026-02-01 11:20:03] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 1/5  
+[2026-02-01 11:21:03] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 2/5  
+[2026-02-01 11:21:46] local.INFO: 💰 Wallet AVANT: {"main":"50000.00","bonus":"0.00","total":50000.0} 
+[2026-02-01 11:21:46] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":49900.0} 
+[2026-02-01 11:21:46] local.INFO: 🎲 Résultat RNG: {"result":"star,star,club,star,heart,star,club,star,star","is_winner":true,"multiplier":10.0,"payout":1100.0} 
+[2026-02-01 11:21:46] local.INFO: ✅ Après CRÉDIT: {"payout":1100.0,"total":51000.0} 
+[2026-02-01 11:21:53] local.INFO: 💰 Wallet AVANT: {"main":"51000.00","bonus":"0.00","total":51000.0} 
+[2026-02-01 11:21:53] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":50900.0} 
+[2026-02-01 11:21:53] local.INFO: 🎲 Résultat RNG: {"result":"diamond,club,star,heart,heart,diamond,club,star,spade","is_winner":false,"multiplier":0,"payout":0} 
+[2026-02-01 11:21:53] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-01 11:22:03] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":2,"type":"goal","team":"away","player":null} 
+[2026-02-01 11:22:03] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 0-1  
+[2026-02-01 11:22:03] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"0-1","event_type":"goal"} 
+[2026-02-01 11:22:03] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"0-1","has_event":true} 
+[2026-02-01 11:22:03] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"0-1","event":{"type":"goal","minute":2,"team":"away","team_name":"Real Madrid","player":"Pierre Thomas","timestamp":"2026-02-01T10:22:03.914323Z"}} 
+[2026-02-01 11:22:03] local.INFO: ⏸️ [SimulateVirtualMatch] MI-TEMPS ! Score: 0-1  
+[2026-02-01 11:22:03] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"0-1","event_type":"half_time"} 
+[2026-02-01 11:22:03] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"0-1","has_event":true} 
+[2026-02-01 11:22:03] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 3/5  
+[2026-02-01 11:22:05] local.INFO: 💰 Wallet AVANT: {"main":"50900.00","bonus":"0.00","total":50900.0} 
+[2026-02-01 11:22:05] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":50800.0} 
+[2026-02-01 11:22:05] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":false,"multiplier":0,"payout":0} 
+[2026-02-01 11:22:05] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-01 11:23:03] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":3,"type":"goal","team":"home","player":null} 
+[2026-02-01 11:23:03] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 1-1  
+[2026-02-01 11:23:03] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"1-1","event_type":"goal"} 
+[2026-02-01 11:23:03] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"1-1","has_event":true} 
+[2026-02-01 11:23:03] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"1-1","event":{"type":"goal","minute":3,"team":"home","team_name":"Atletico Madrid","player":"Paul Martin","timestamp":"2026-02-01T10:23:03.933821Z"}} 
+[2026-02-01 11:23:03] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 4/5  
+[2026-02-01 11:24:03] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":4,"type":"goal","team":"home","player":null} 
+[2026-02-01 11:24:03] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 2-1  
+[2026-02-01 11:24:03] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"2-1","event_type":"goal"} 
+[2026-02-01 11:24:03] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"2-1","has_event":true} 
+[2026-02-01 11:24:03] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"2-1","event":{"type":"goal","minute":4,"team":"home","team_name":"Atletico Madrid","player":"Jean Thomas","timestamp":"2026-02-01T10:24:03.949213Z"}} 
+[2026-02-01 11:24:03] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 5/5  
+[2026-02-01 11:24:10] local.INFO: 💰 Wallet AVANT: {"main":"50800.00","bonus":"0.00","total":50800.0} 
+[2026-02-01 11:24:10] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":50700.0} 
+[2026-02-01 11:24:10] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":true,"multiplier":2.0,"payout":300.0} 
+[2026-02-01 11:24:10] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":51000.0} 
+[2026-02-01 11:25:03] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":5,"type":"goal","team":"home","player":null} 
+[2026-02-01 11:25:03] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 3-1  
+[2026-02-01 11:25:03] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"3-1","event_type":"goal"} 
+[2026-02-01 11:25:03] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"3-1","has_event":true} 
+[2026-02-01 11:25:03] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"3-1","event":{"type":"goal","minute":5,"team":"home","team_name":"Atletico Madrid","player":"Joseph Martin","timestamp":"2026-02-01T10:25:03.969101Z"}} 
+[2026-02-01 11:25:03] local.INFO: 🏁 [SimulateVirtualMatch] FIN DU MATCH ! Score final: 3-1  
+[2026-02-01 11:25:03] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":86,"reference":"VM-1SLDCUJM","final_score":"3-1","result":"home_win"} 
+[2026-02-01 11:25:03] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":86,"reference":"VM-1SLDCUJM","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"completed","score_home":3,"score_away":1,"score_first_half_home":0,"score_first_half_away":1,"result":"home_win","starts_at":"2026-02-01T10:20:00.000000Z","ends_at":"2026-02-01T10:25:03.000000Z","match_events":[{"type":"yellow_card","minute":"2","team":"away","team_name":"Real Madrid","player":null,"timestamp":"2026-02-01T08:43:13.442977Z","event_type":"goal"},{"type":"goal","minute":"3","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:23.458237Z","event_type":"goal"},{"type":"goal","minute":"4","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:33.473565Z","event_type":"goal"},{"event_type":"goal","team":"home","minute":"5","player":null},{"type":"goal","minute":2,"team":"away","team_name":"Real Madrid","player":"Pierre Thomas","timestamp":"2026-02-01T10:22:03.914323Z"},{"type":"goal","minute":3,"team":"home","team_name":"Atletico Madrid","player":"Paul Martin","timestamp":"2026-02-01T10:23:03.933821Z"},{"type":"goal","minute":4,"team":"home","team_name":"Atletico Madrid","player":"Jean Thomas","timestamp":"2026-02-01T10:24:03.949213Z"},{"type":"goal","minute":5,"team":"home","team_name":"Atletico Madrid","player":"Joseph Martin","timestamp":"2026-02-01T10:25:03.969101Z"}]}} 
+[2026-02-01 11:34:57] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"upcoming","starts_at":"2026-02-01T10:40:00.000000Z"} 
+[2026-02-01 11:34:57] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"upcoming"} 
+[2026-02-01 11:34:57] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"upcoming"} 
+[2026-02-01 11:40:01] local.INFO: 🎮 [Event] VirtualMatchStarted créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid"} 
+[2026-02-01 11:40:01] local.INFO: 📡 [Broadcast] VirtualMatchStarted data {"match":{"id":86,"reference":"VM-1SLDCUJM","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"live","score_home":0,"score_away":0,"starts_at":"2026-02-01T10:40:01.000000Z","ends_at":"2026-02-01T10:45:00.000000Z"}} 
+[2026-02-01 11:40:03] local.INFO: 🎮 [SimulateVirtualMatch] Démarrage de la simulation {"match_id":86,"reference":"VM-1SLDCUJM","duration":5} 
+[2026-02-01 11:40:03] local.INFO: 📋 [SimulateVirtualMatch] Événements configurés {"count":4,"events":[{"type":"yellow_card","minute":"2","team":"away","team_name":"Real Madrid","player":null,"timestamp":"2026-02-01T08:43:13.442977Z","event_type":"goal"},{"type":"goal","minute":"3","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:23.458237Z","event_type":"goal"},{"type":"goal","minute":"4","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:33.473565Z","event_type":"goal"},{"event_type":"goal","team":"home","minute":"5","player":null}]} 
+[2026-02-01 11:40:03] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 1/5  
+[2026-02-01 11:41:03] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 2/5  
+[2026-02-01 11:42:03] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":2,"type":"goal","team":"away","player":null} 
+[2026-02-01 11:42:03] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 0-1  
+[2026-02-01 11:42:03] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"0-1","event_type":"goal"} 
+[2026-02-01 11:42:03] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"0-1","has_event":true} 
+[2026-02-01 11:42:03] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"0-1","event":{"type":"goal","minute":2,"team":"away","team_name":"Real Madrid","player":"François Durand","timestamp":"2026-02-01T10:42:03.965509Z"}} 
+[2026-02-01 11:42:03] local.INFO: ⏸️ [SimulateVirtualMatch] MI-TEMPS ! Score: 0-1  
+[2026-02-01 11:42:03] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"0-1","event_type":"half_time"} 
+[2026-02-01 11:42:03] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"0-1","has_event":true} 
+[2026-02-01 11:42:03] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 3/5  
+[2026-02-01 11:43:03] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":3,"type":"goal","team":"home","player":null} 
+[2026-02-01 11:43:03] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 1-1  
+[2026-02-01 11:43:04] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"1-1","event_type":"goal"} 
+[2026-02-01 11:43:04] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"1-1","has_event":true} 
+[2026-02-01 11:43:04] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"1-1","event":{"type":"goal","minute":3,"team":"home","team_name":"Atletico Madrid","player":"Luc Durand","timestamp":"2026-02-01T10:43:03.996879Z"}} 
+[2026-02-01 11:43:04] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 4/5  
+[2026-02-01 11:44:04] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":4,"type":"goal","team":"home","player":null} 
+[2026-02-01 11:44:04] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 2-1  
+[2026-02-01 11:44:04] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"2-1","event_type":"goal"} 
+[2026-02-01 11:44:04] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"2-1","has_event":true} 
+[2026-02-01 11:44:04] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"2-1","event":{"type":"goal","minute":4,"team":"home","team_name":"Atletico Madrid","player":"Luc Leroy","timestamp":"2026-02-01T10:44:04.019206Z"}} 
+[2026-02-01 11:44:04] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 5/5  
+[2026-02-01 11:45:04] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":5,"type":"goal","team":"home","player":null} 
+[2026-02-01 11:45:04] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 3-1  
+[2026-02-01 11:45:04] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"3-1","event_type":"goal"} 
+[2026-02-01 11:45:04] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"3-1","has_event":true} 
+[2026-02-01 11:45:04] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"3-1","event":{"type":"goal","minute":5,"team":"home","team_name":"Atletico Madrid","player":"Joseph Richard","timestamp":"2026-02-01T10:45:04.045891Z"}} 
+[2026-02-01 11:45:04] local.INFO: 🏁 [SimulateVirtualMatch] FIN DU MATCH ! Score final: 3-1  
+[2026-02-01 11:45:04] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":86,"reference":"VM-1SLDCUJM","final_score":"3-1","result":"home_win"} 
+[2026-02-01 11:45:04] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":86,"reference":"VM-1SLDCUJM","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"completed","score_home":3,"score_away":1,"score_first_half_home":0,"score_first_half_away":1,"result":"home_win","starts_at":"2026-02-01T10:40:01.000000Z","ends_at":"2026-02-01T10:45:04.000000Z","match_events":[{"type":"yellow_card","minute":"2","team":"away","team_name":"Real Madrid","player":null,"timestamp":"2026-02-01T08:43:13.442977Z","event_type":"goal"},{"type":"goal","minute":"3","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:23.458237Z","event_type":"goal"},{"type":"goal","minute":"4","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:33.473565Z","event_type":"goal"},{"event_type":"goal","team":"home","minute":"5","player":null},{"type":"goal","minute":2,"team":"away","team_name":"Real Madrid","player":"François Durand","timestamp":"2026-02-01T10:42:03.965509Z"},{"type":"goal","minute":3,"team":"home","team_name":"Atletico Madrid","player":"Luc Durand","timestamp":"2026-02-01T10:43:03.996879Z"},{"type":"goal","minute":4,"team":"home","team_name":"Atletico Madrid","player":"Luc Leroy","timestamp":"2026-02-01T10:44:04.019206Z"},{"type":"goal","minute":5,"team":"home","team_name":"Atletico Madrid","player":"Joseph Richard","timestamp":"2026-02-01T10:45:04.045891Z"}]}} 
+
+
+[2026-02-01 11:55:43] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"upcoming","starts_at":"2026-02-01T11:30:00.000000Z"} 
+[2026-02-01 11:55:43] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"upcoming"} 
+[2026-02-01 11:55:43] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"upcoming"} 
+[2026-02-01 12:30:00] local.INFO: 🎮 [Event] VirtualMatchStarted créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid"} 
+[2026-02-01 12:30:00] local.INFO: 📡 [Broadcast] VirtualMatchStarted data {"match":{"id":86,"reference":"VM-1SLDCUJM","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"live","score_home":0,"score_away":0,"starts_at":"2026-02-01T11:30:00.000000Z","ends_at":"2026-02-01T11:35:00.000000Z"}} 
+[2026-02-01 12:30:02] local.INFO: 🎮 [SimulateVirtualMatch] Démarrage de la simulation {"match_id":86,"reference":"VM-1SLDCUJM","duration":5} 
+[2026-02-01 12:30:02] local.INFO: 📋 [SimulateVirtualMatch] Événements configurés {"count":4,"events":[{"type":"yellow_card","minute":"2","team":"away","team_name":"Real Madrid","player":null,"timestamp":"2026-02-01T08:43:13.442977Z","event_type":"goal"},{"type":"goal","minute":"3","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:23.458237Z","event_type":"goal"},{"type":"goal","minute":"4","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:33.473565Z","event_type":"goal"},{"event_type":"goal","team":"home","minute":"5","player":null}]} 
+[2026-02-01 12:30:02] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 1/5  
+[2026-02-01 12:31:02] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 2/5  
+[2026-02-01 12:32:02] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":2,"type":"goal","team":"away","player":null} 
+[2026-02-01 12:32:02] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 0-1  
+[2026-02-01 12:32:02] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"0-1","event_type":"goal"} 
+[2026-02-01 12:32:02] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"0-1","has_event":true} 
+[2026-02-01 12:32:02] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"0-1","event":{"type":"goal","minute":2,"team":"away","team_name":"Real Madrid","player":"Jean Dubois","timestamp":"2026-02-01T11:32:02.433693Z"}} 
+[2026-02-01 12:32:02] local.INFO: ⏸️ [SimulateVirtualMatch] MI-TEMPS ! Score: 0-1  
+[2026-02-01 12:32:02] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"0-1","event_type":"half_time"} 
+[2026-02-01 12:32:02] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"0-1","has_event":true} 
+[2026-02-01 12:32:02] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 3/5  
+[2026-02-01 12:33:02] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":3,"type":"goal","team":"home","player":null} 
+[2026-02-01 12:33:02] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 1-1  
+[2026-02-01 12:33:02] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"1-1","event_type":"goal"} 
+[2026-02-01 12:33:02] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"1-1","has_event":true} 
+[2026-02-01 12:33:02] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"1-1","event":{"type":"goal","minute":3,"team":"home","team_name":"Atletico Madrid","player":"Emmanuel Robert","timestamp":"2026-02-01T11:33:02.466067Z"}} 
+[2026-02-01 12:33:02] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 4/5  
+[2026-02-01 12:34:02] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":4,"type":"goal","team":"home","player":null} 
+[2026-02-01 12:34:02] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 2-1  
+[2026-02-01 12:34:02] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"2-1","event_type":"goal"} 
+[2026-02-01 12:34:02] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"2-1","has_event":true} 
+[2026-02-01 12:34:02] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"2-1","event":{"type":"goal","minute":4,"team":"home","team_name":"Atletico Madrid","player":"Paul Richard","timestamp":"2026-02-01T11:34:02.478569Z"}} 
+[2026-02-01 12:34:02] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 5/5  
+[2026-02-01 12:35:02] local.INFO: 🎯 [SimulateVirtualMatch] Événement détecté {"minute":5,"type":"goal","team":"home","player":null} 
+[2026-02-01 12:35:02] local.INFO: ⚽ [SimulateVirtualMatch] BUT ! Score: 3-1  
+[2026-02-01 12:35:02] local.INFO: ⚡ [Event] VirtualMatchUpdated créé {"match_id":86,"reference":"VM-1SLDCUJM","score":"3-1","event_type":"goal"} 
+[2026-02-01 12:35:02] local.INFO: 📡 [Broadcast] VirtualMatchUpdated data {"match_id":86,"score":"3-1","has_event":true} 
+[2026-02-01 12:35:02] local.INFO: 📡 [SimulateVirtualMatch] Événement broadcasté {"score":"3-1","event":{"type":"goal","minute":5,"team":"home","team_name":"Atletico Madrid","player":"David Richard","timestamp":"2026-02-01T11:35:02.498543Z"}} 
+[2026-02-01 12:35:02] local.INFO: 🏁 [SimulateVirtualMatch] FIN DU MATCH ! Score final: 3-1  
+[2026-02-01 12:35:02] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":86,"reference":"VM-1SLDCUJM","final_score":"3-1","result":"home_win"} 
+[2026-02-01 12:35:02] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":86,"reference":"VM-1SLDCUJM","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"completed","score_home":3,"score_away":1,"score_first_half_home":0,"score_first_half_away":1,"result":"home_win","starts_at":"2026-02-01T11:30:00.000000Z","ends_at":"2026-02-01T11:35:02.000000Z","match_events":[{"type":"yellow_card","minute":"2","team":"away","team_name":"Real Madrid","player":null,"timestamp":"2026-02-01T08:43:13.442977Z","event_type":"goal"},{"type":"goal","minute":"3","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:23.458237Z","event_type":"goal"},{"type":"goal","minute":"4","team":"home","team_name":"Atletico Madrid","player":null,"timestamp":"2026-02-01T08:43:33.473565Z","event_type":"goal"},{"event_type":"goal","team":"home","minute":"5","player":null},{"type":"goal","minute":2,"team":"away","team_name":"Real Madrid","player":"Jean Dubois","timestamp":"2026-02-01T11:32:02.433693Z"},{"type":"goal","minute":3,"team":"home","team_name":"Atletico Madrid","player":"Emmanuel Robert","timestamp":"2026-02-01T11:33:02.466067Z"},{"type":"goal","minute":4,"team":"home","team_name":"Atletico Madrid","player":"Paul Richard","timestamp":"2026-02-01T11:34:02.478569Z"},{"type":"goal","minute":5,"team":"home","team_name":"Atletico Madrid","player":"David Richard","timestamp":"2026-02-01T11:35:02.498543Z"}]}} 
+[2026-02-01 12:49:43] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"completed","starts_at":"2026-02-01T11:30:00.000000Z"} 
+[2026-02-01 12:49:43] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"completed"} 
+[2026-02-01 12:49:43] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"completed"} 
+[2026-02-01 12:50:18] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"completed","starts_at":"2026-02-01T11:30:00.000000Z"} 
+[2026-02-01 12:50:18] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"completed"} 
+[2026-02-01 12:50:18] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"completed"} 
+[2026-02-01 12:54:56] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"completed","starts_at":"2026-02-01T11:30:00.000000Z"} 
+[2026-02-01 12:54:56] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"completed"} 
+[2026-02-01 12:54:56] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"completed"} 
+[2026-02-01 12:56:03] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"completed","starts_at":"2026-02-01T11:30:00.000000Z"} 
+[2026-02-01 12:56:03] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"completed"} 
+[2026-02-01 12:56:03] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"completed"} 
+[2026-02-01 12:58:51] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"completed","starts_at":"2026-02-01T11:30:00.000000Z"} 
+[2026-02-01 12:58:51] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"completed"} 
+[2026-02-01 12:58:51] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"completed"} 
+[2026-02-01 13:07:11] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"completed","starts_at":"2026-02-01T11:30:00.000000Z"} 
+[2026-02-01 13:07:11] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"completed"} 
+[2026-02-01 13:07:11] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"completed"} 
+[2026-02-01 13:08:56] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":86,"reference":"VM-1SLDCUJM","teams":"Atletico Madrid vs Real Madrid","status":"completed","starts_at":"2026-02-01T11:30:00.000000Z"} 
+[2026-02-01 13:08:56] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":86,"status":"completed"} 
+[2026-02-01 13:08:56] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":86,"reference":"VM-1SLDCUJM","status":"completed"} 
+[2026-02-01 13:20:10] local.ERROR: Command "tinker" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"tinker\" is not defined. at /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php:759)
 [stacktrace]
 #0 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php(298): Symfony\\Component\\Console\\Application->find('tinker')
 #1 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php(195): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
@@ -6,423 +198,84 @@
 #3 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #4 {main}
 "} 
-[2026-01-02 15:47:11] local.INFO: 💰 Wallet AVANT: {"main":"944100.00","bonus":"0.00","total":944100.0} 
-[2026-01-02 15:47:11] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":944000.0} 
-[2026-01-02 15:47:11] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":20.0,"payout":2000.0} 
-[2026-01-02 15:47:11] local.INFO: ✅ Après CRÉDIT: {"payout":2000.0,"total":946000.0} 
-[2026-01-02 15:47:27] local.INFO: 💰 Wallet AVANT: {"main":"946000.00","bonus":"0.00","total":946000.0} 
-[2026-01-02 15:47:27] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":945900.0} 
-[2026-01-02 15:47:27] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 15:47:27] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 15:51:09] local.INFO: 💰 Wallet AVANT: {"main":"945900.00","bonus":"0.00","total":945900.0} 
-[2026-01-02 15:51:09] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":945800.0} 
-[2026-01-02 15:51:09] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 15:51:09] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 15:51:39] local.INFO: 💰 Wallet AVANT: {"main":"945800.00","bonus":"0.00","total":945800.0} 
-[2026-01-02 15:51:39] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":945700.0} 
-[2026-01-02 15:51:39] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":true,"multiplier":10.0,"payout":1000.0} 
-[2026-01-02 15:51:39] local.INFO: ✅ Après CRÉDIT: {"payout":1000.0,"total":946700.0} 
-[2026-01-02 15:51:58] local.INFO: 💰 Wallet AVANT: {"main":"946700.00","bonus":"0.00","total":946700.0} 
-[2026-01-02 15:51:58] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":946600.0} 
-[2026-01-02 15:51:58] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":true,"multiplier":2.0,"payout":200.0} 
-[2026-01-02 15:51:58] local.INFO: ✅ Après CRÉDIT: {"payout":200.0,"total":946800.0} 
-[2026-01-02 15:52:13] local.INFO: 💰 Wallet AVANT: {"main":"946800.00","bonus":"0.00","total":946800.0} 
-[2026-01-02 15:52:13] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":946700.0} 
-[2026-01-02 15:52:13] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":true,"multiplier":10.0,"payout":1000.0} 
-[2026-01-02 15:52:13] local.INFO: ✅ Après CRÉDIT: {"payout":1000.0,"total":947700.0} 
-[2026-01-02 15:56:59] local.INFO: 💰 Wallet AVANT: {"main":"947700.00","bonus":"0.00","total":947700.0} 
-[2026-01-02 15:56:59] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":947600.0} 
-[2026-01-02 15:56:59] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":true,"multiplier":10.0,"payout":1000.0} 
-[2026-01-02 15:56:59] local.INFO: ✅ Après CRÉDIT: {"payout":1000.0,"total":948600.0} 
-[2026-01-02 16:01:04] local.INFO: 💰 Wallet AVANT: {"main":"948600.00","bonus":"0.00","total":948600.0} 
-[2026-01-02 16:01:04] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":948500.0} 
-[2026-01-02 16:01:04] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 16:01:04] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 16:01:13] local.INFO: 💰 Wallet AVANT: {"main":"948500.00","bonus":"0.00","total":948500.0} 
-[2026-01-02 16:01:13] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":948400.0} 
-[2026-01-02 16:01:13] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 16:01:13] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 16:01:21] local.INFO: 💰 Wallet AVANT: {"main":"948400.00","bonus":"0.00","total":948400.0} 
-[2026-01-02 16:01:21] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":948300.0} 
-[2026-01-02 16:01:21] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 16:01:21] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 16:01:30] local.INFO: 💰 Wallet AVANT: {"main":"948300.00","bonus":"0.00","total":948300.0} 
-[2026-01-02 16:01:30] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":948200.0} 
-[2026-01-02 16:01:30] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":true,"multiplier":2.0,"payout":200.0} 
-[2026-01-02 16:01:30] local.INFO: ✅ Après CRÉDIT: {"payout":200.0,"total":948400.0} 
-[2026-01-02 16:01:46] local.INFO: 💰 Wallet AVANT: {"main":"948400.00","bonus":"0.00","total":948400.0} 
-[2026-01-02 16:01:46] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":948300.0} 
-[2026-01-02 16:01:46] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":20.0,"payout":2000.0} 
-[2026-01-02 16:01:46] local.INFO: ✅ Après CRÉDIT: {"payout":2000.0,"total":950300.0} 
-[2026-01-02 16:11:57] local.INFO: 💰 Wallet AVANT: {"main":"950300.00","bonus":"0.00","total":950300.0} 
-[2026-01-02 16:11:57] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":950200.0} 
-[2026-01-02 16:11:57] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 16:11:57] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 16:12:06] local.INFO: 💰 Wallet AVANT: {"main":"950200.00","bonus":"0.00","total":950200.0} 
-[2026-01-02 16:12:06] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":950100.0} 
-[2026-01-02 16:12:06] local.INFO: 🎲 Résultat RNG: {"result":"7","is_winner":true,"multiplier":20.0,"payout":2100.0} 
-[2026-01-02 16:12:06] local.INFO: ✅ Après CRÉDIT: {"payout":2100.0,"total":952200.0} 
-[2026-01-02 16:13:18] local.INFO: 💰 Wallet AVANT: {"main":"952200.00","bonus":"0.00","total":952200.0} 
-[2026-01-02 16:13:18] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":947200.0} 
-[2026-01-02 16:13:18] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":true,"multiplier":5.0,"payout":30000.0} 
-[2026-01-02 16:13:18] local.INFO: ✅ Après CRÉDIT: {"payout":30000.0,"total":977200.0} 
-[2026-01-02 16:13:28] local.INFO: 💰 Wallet AVANT: {"main":"977200.00","bonus":"0.00","total":977200.0} 
-[2026-01-02 16:13:28] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":972200.0} 
-[2026-01-02 16:13:28] local.INFO: 🎲 Résultat RNG: {"result":"7","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 16:13:28] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 16:13:38] local.INFO: 💰 Wallet AVANT: {"main":"972200.00","bonus":"0.00","total":972200.0} 
-[2026-01-02 16:13:38] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":967200.0} 
-[2026-01-02 16:13:38] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":true,"multiplier":10.0,"payout":55000.0} 
-[2026-01-02 16:13:38] local.INFO: ✅ Après CRÉDIT: {"payout":55000.0,"total":1022200.0} 
-[2026-01-02 16:45:06] local.INFO: 💰 Wallet AVANT: {"main":"1022200.00","bonus":"0.00","total":1022200.0} 
-[2026-01-02 16:45:06] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1022100.0} 
-[2026-01-02 16:45:06] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 16:45:06] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 16:45:28] local.INFO: 💰 Wallet AVANT: {"main":"1022100.00","bonus":"0.00","total":1022100.0} 
-[2026-01-02 16:45:28] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1022000.0} 
-[2026-01-02 16:45:28] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 16:45:28] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 16:45:39] local.INFO: 💰 Wallet AVANT: {"main":"1022000.00","bonus":"0.00","total":1022000.0} 
-[2026-01-02 16:45:39] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1021900.0} 
-[2026-01-02 16:45:39] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 16:45:39] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 16:46:07] local.INFO: 💰 Wallet AVANT: {"main":"1021900.00","bonus":"0.00","total":1021900.0} 
-[2026-01-02 16:46:07] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1021800.0} 
-[2026-01-02 16:46:07] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":true,"multiplier":10.0,"payout":1100.0} 
-[2026-01-02 16:46:07] local.INFO: ✅ Après CRÉDIT: {"payout":1100.0,"total":1022900.0} 
-[2026-01-02 16:46:15] local.INFO: 💰 Wallet AVANT: {"main":"1022900.00","bonus":"0.00","total":1022900.0} 
-[2026-01-02 16:46:15] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1022800.0} 
-[2026-01-02 16:46:15] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":true,"multiplier":10.0,"payout":1100.0} 
-[2026-01-02 16:46:15] local.INFO: ✅ Après CRÉDIT: {"payout":1100.0,"total":1023900.0} 
-[2026-01-02 16:46:24] local.INFO: 💰 Wallet AVANT: {"main":"1023900.00","bonus":"0.00","total":1023900.0} 
-[2026-01-02 16:46:24] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1023800.0} 
-[2026-01-02 16:46:24] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":true,"multiplier":5.0,"payout":600.0} 
-[2026-01-02 16:46:24] local.INFO: ✅ Après CRÉDIT: {"payout":600.0,"total":1024400.0} 
-[2026-01-02 16:51:18] local.INFO: 💰 Wallet AVANT: {"main":"1024400.00","bonus":"0.00","total":1024400.0} 
-[2026-01-02 16:51:18] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1024300.0} 
-[2026-01-02 16:51:18] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":true,"multiplier":5.0,"payout":600.0} 
-[2026-01-02 16:51:18] local.INFO: ✅ Après CRÉDIT: {"payout":600.0,"total":1024900.0} 
-[2026-01-02 17:31:38] local.INFO: 💰 Wallet AVANT: {"main":"1024900.00","bonus":"0.00","total":1024900.0} 
-[2026-01-02 17:31:38] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1019900.0} 
-[2026-01-02 17:31:38] local.INFO: 🎲 Résultat RNG: {"result":"star,club,heart,heart,spade,heart,diamond,diamond,star","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-02 17:31:38] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1034900.0} 
-[2026-01-02 17:31:52] local.INFO: 💰 Wallet AVANT: {"main":"1034900.00","bonus":"0.00","total":1034900.0} 
-[2026-01-02 17:31:52] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1029900.0} 
-[2026-01-02 17:31:52] local.INFO: 🎲 Résultat RNG: {"result":"heart,diamond,diamond,diamond,heart,diamond,spade,club,club","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-02 17:31:52] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-02 17:32:09] local.INFO: 💰 Wallet AVANT: {"main":"1029900.00","bonus":"0.00","total":1029900.0} 
-[2026-01-02 17:32:09] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":1028900.0} 
-[2026-01-02 17:32:09] local.INFO: 🎲 Résultat RNG: {"result":"star,spade,spade,club,diamond,club,heart,spade,star","is_winner":true,"multiplier":2.0,"payout":3000.0} 
-[2026-01-02 17:32:09] local.INFO: ✅ Après CRÉDIT: {"payout":3000.0,"total":1031900.0} 
-[2026-01-03 23:19:17] local.INFO: 💰 Wallet AVANT: {"main":"1031900.00","bonus":"0.00","total":1031900.0} 
-[2026-01-03 23:19:17] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1031800.0} 
-[2026-01-03 23:19:17] local.INFO: 🎲 Résultat RNG: {"result":"star,heart,star,diamond,spade,club,star,heart,club","is_winner":true,"multiplier":2.0,"payout":300.0} 
-[2026-01-03 23:19:17] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":1032100.0} 
-[2026-01-03 23:19:40] local.INFO: 💰 Wallet AVANT: {"main":"1032100.00","bonus":"0.00","total":1032100.0} 
-[2026-01-03 23:19:40] local.INFO: 💸 Après DÉBIT: {"amount":500,"total":1031600.0} 
-[2026-01-03 23:19:40] local.INFO: 🎲 Résultat RNG: {"result":"heart,diamond,spade,star,heart,heart,heart,star,diamond","is_winner":true,"multiplier":3.0,"payout":2000.0} 
-[2026-01-03 23:19:40] local.INFO: ✅ Après CRÉDIT: {"payout":2000.0,"total":1033600.0} 
-[2026-01-03 23:30:43] local.INFO: 💰 Wallet AVANT: {"main":"1033600.00","bonus":"0.00","total":1033600.0} 
-[2026-01-03 23:30:43] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1033500.0} 
-[2026-01-03 23:30:43] local.INFO: 🎲 Résultat RNG: {"result":"star,diamond,diamond,heart,club,club,star,heart,spade","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-03 23:30:43] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-03 23:35:33] local.INFO: 💰 Wallet AVANT: {"main":"1033500.00","bonus":"0.00","total":1033500.0} 
-[2026-01-03 23:35:33] local.INFO: 💸 Après DÉBIT: {"amount":500,"total":1033000.0} 
-[2026-01-03 23:35:33] local.INFO: 🎲 Résultat RNG: {"result":"heart,diamond,spade,star,heart,diamond,star,club,club","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-03 23:35:33] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-03 23:38:42] local.INFO: 💰 Wallet AVANT: {"main":"1033000.00","bonus":"0.00","total":1033000.0} 
-[2026-01-03 23:38:42] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1032900.0} 
-[2026-01-03 23:38:42] local.INFO: 🎲 Résultat RNG: {"result":"spade,club,heart,star,club,club,diamond,club,diamond","is_winner":true,"multiplier":3.0,"payout":400.0} 
-[2026-01-03 23:38:42] local.INFO: ✅ Après CRÉDIT: {"payout":400.0,"total":1033300.0} 
-[2026-01-03 23:41:09] local.INFO: 💰 Wallet AVANT: {"main":"1033300.00","bonus":"0.00","total":1033300.0} 
-[2026-01-03 23:41:09] local.INFO: 💸 Après DÉBIT: {"amount":500,"total":1032800.0} 
-[2026-01-03 23:41:09] local.INFO: 🎲 Résultat RNG: {"result":"star,club,spade,club,club,club,club,heart,spade","is_winner":true,"multiplier":5.0,"payout":3000.0} 
-[2026-01-03 23:41:09] local.INFO: ✅ Après CRÉDIT: {"payout":3000.0,"total":1035800.0} 
-[2026-01-03 23:44:11] local.INFO: 💰 Wallet AVANT: {"main":"1035800.00","bonus":"0.00","total":1035800.0} 
-[2026-01-03 23:44:11] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1035700.0} 
-[2026-01-03 23:44:11] local.INFO: 🎲 Résultat RNG: {"result":"diamond,star,diamond,star,club,heart,club,spade,heart","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-03 23:44:11] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-03 23:44:24] local.INFO: 💰 Wallet AVANT: {"main":"1035700.00","bonus":"0.00","total":1035700.0} 
-[2026-01-03 23:44:24] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1035600.0} 
-[2026-01-03 23:44:24] local.INFO: 🎲 Résultat RNG: {"result":"club,spade,heart,club,club,club,club,spade,club","is_winner":true,"multiplier":10.0,"payout":1100.0} 
-[2026-01-03 23:44:24] local.INFO: ✅ Après CRÉDIT: {"payout":1100.0,"total":1036700.0} 
-[2026-01-03 23:44:38] local.INFO: 💰 Wallet AVANT: {"main":"1036700.00","bonus":"0.00","total":1036700.0} 
-[2026-01-03 23:44:38] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":1035700.0} 
-[2026-01-03 23:44:38] local.INFO: 🎲 Résultat RNG: {"result":"spade,club,heart,diamond,diamond,club,star,heart,star","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-03 23:44:38] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-03 23:50:30] local.INFO: 💰 Wallet AVANT: {"main":"1035700.00","bonus":"0.00","total":1035700.0} 
-[2026-01-03 23:50:30] local.INFO: 💸 Après DÉBIT: {"amount":500,"total":1035200.0} 
-[2026-01-03 23:50:30] local.INFO: 🎲 Résultat RNG: {"result":"star,diamond,heart,star,club,diamond,heart,spade,club","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-03 23:50:30] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-03 23:50:54] local.INFO: 💰 Wallet AVANT: {"main":"1035200.00","bonus":"0.00","total":1035200.0} 
-[2026-01-03 23:50:54] local.INFO: 💸 Après DÉBIT: {"amount":500,"total":1034700.0} 
-[2026-01-03 23:50:54] local.INFO: 🎲 Résultat RNG: {"result":"diamond,spade,heart,heart,star,star,club,club,diamond","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-03 23:50:54] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-03 23:51:06] local.INFO: 💰 Wallet AVANT: {"main":"1034700.00","bonus":"0.00","total":1034700.0} 
-[2026-01-03 23:51:06] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1029700.0} 
-[2026-01-03 23:51:06] local.INFO: 🎲 Résultat RNG: {"result":"star,spade,spade,heart,spade,spade,diamond,spade,spade","is_winner":true,"multiplier":10.0,"payout":55000.0} 
-[2026-01-03 23:51:06] local.INFO: ✅ Après CRÉDIT: {"payout":55000.0,"total":1084700.0} 
-[2026-01-03 23:51:50] local.INFO: 💰 Wallet AVANT: {"main":"1084700.00","bonus":"0.00","total":1084700.0} 
-[2026-01-03 23:51:50] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1079700.0} 
-[2026-01-03 23:51:50] local.INFO: 🎲 Résultat RNG: {"result":"club,heart,star,star,diamond,heart,club,diamond,spade","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-03 23:51:50] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-03 23:57:53] local.INFO: 💰 Wallet AVANT: {"main":"1079700.00","bonus":"0.00","total":1079700.0} 
-[2026-01-03 23:57:53] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":1078700.0} 
-[2026-01-03 23:57:53] local.INFO: 🎲 Résultat RNG: {"result":"spade,spade,spade,club,club,heart,heart,heart,diamond","is_winner":true,"multiplier":2.0,"payout":3000.0} 
-[2026-01-03 23:57:53] local.INFO: ✅ Après CRÉDIT: {"payout":3000.0,"total":1081700.0} 
-[2026-01-03 23:58:22] local.INFO: 💰 Wallet AVANT: {"main":"1081700.00","bonus":"0.00","total":1081700.0} 
-[2026-01-03 23:58:22] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":1080700.0} 
-[2026-01-03 23:58:22] local.INFO: 🎲 Résultat RNG: {"result":"diamond,spade,spade,heart,spade,heart,spade,star,diamond","is_winner":true,"multiplier":3.0,"payout":4000.0} 
-[2026-01-03 23:58:22] local.INFO: ✅ Après CRÉDIT: {"payout":4000.0,"total":1084700.0} 
-[2026-01-03 23:58:47] local.INFO: 💰 Wallet AVANT: {"main":"1084700.00","bonus":"0.00","total":1084700.0} 
-[2026-01-03 23:58:47] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":1083700.0} 
-[2026-01-03 23:58:47] local.INFO: 🎲 Résultat RNG: {"result":"star,star,heart,star,club,star,star,spade,diamond","is_winner":true,"multiplier":5.0,"payout":6000.0} 
-[2026-01-03 23:58:47] local.INFO: ✅ Après CRÉDIT: {"payout":6000.0,"total":1089700.0} 
-[2026-01-04 00:00:35] local.INFO: 💰 Wallet AVANT: {"main":"1089700.00","bonus":"0.00","total":1089700.0} 
-[2026-01-04 00:00:35] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1089600.0} 
-[2026-01-04 00:00:35] local.INFO: 🎲 Résultat RNG: {"result":"heart,heart,heart,heart,heart,heart,heart,heart,heart","is_winner":true,"multiplier":10.0,"payout":1100.0} 
-[2026-01-04 00:00:35] local.INFO: ✅ Après CRÉDIT: {"payout":1100.0,"total":1090700.0} 
-[2026-01-04 00:01:04] local.INFO: 💰 Wallet AVANT: {"main":"1090700.00","bonus":"0.00","total":1090700.0} 
-[2026-01-04 00:01:04] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1090600.0} 
-[2026-01-04 00:01:04] local.INFO: 🎲 Résultat RNG: {"result":"heart,club,heart,club,club,star,heart,club,club","is_winner":true,"multiplier":5.0,"payout":600.0} 
-[2026-01-04 00:01:04] local.INFO: ✅ Après CRÉDIT: {"payout":600.0,"total":1091200.0} 
-[2026-01-04 00:01:59] local.INFO: 💰 Wallet AVANT: {"main":"1091200.00","bonus":"0.00","total":1091200.0} 
-[2026-01-04 00:01:59] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1091100.0} 
-[2026-01-04 00:01:59] local.INFO: 🎲 Résultat RNG: {"result":"heart,star,spade,spade,spade,star,star,club,spade","is_winner":true,"multiplier":3.0,"payout":400.0} 
-[2026-01-04 00:01:59] local.INFO: ✅ Après CRÉDIT: {"payout":400.0,"total":1091500.0} 
-[2026-01-04 06:27:09] local.INFO: 💰 Wallet AVANT: {"main":"1091500.00","bonus":"0.00","total":1091500.0} 
-[2026-01-04 06:27:09] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1086500.0} 
-[2026-01-04 06:27:09] local.INFO: 🎲 Résultat RNG: {"result":"star,star,star,heart,star,star,star,star,heart","is_winner":true,"multiplier":10.0,"payout":55000.0} 
-[2026-01-04 06:27:09] local.INFO: ✅ Après CRÉDIT: {"payout":55000.0,"total":1141500.0} 
-[2026-01-04 06:30:33] local.INFO: 💰 Wallet AVANT: {"main":"1141500.00","bonus":"0.00","total":1141500.0} 
-[2026-01-04 06:30:33] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1136500.0} 
-[2026-01-04 06:30:33] local.INFO: 🎲 Résultat RNG: {"result":"star,star,club,club,diamond,spade,heart,diamond,heart","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 06:30:33] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 06:32:01] local.INFO: 💰 Wallet AVANT: {"main":"1136500.00","bonus":"0.00","total":1136500.0} 
-[2026-01-04 06:32:01] local.INFO: 💸 Après DÉBIT: {"amount":100000,"total":1036500.0} 
-[2026-01-04 06:32:01] local.INFO: 🎲 Résultat RNG: {"result":"club,heart,spade,star,star,heart,diamond,diamond,club","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 06:32:01] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 06:32:15] local.INFO: 💰 Wallet AVANT: {"main":"1036500.00","bonus":"0.00","total":1036500.0} 
-[2026-01-04 06:32:15] local.INFO: 💸 Après DÉBIT: {"amount":100000,"total":936500.0} 
-[2026-01-04 06:32:15] local.INFO: 🎲 Résultat RNG: {"result":"star,heart,club,diamond,spade,star,club,diamond,heart","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 06:32:15] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 06:32:23] local.INFO: 💰 Wallet AVANT: {"main":"936500.00","bonus":"0.00","total":936500.0} 
-[2026-01-04 06:32:23] local.INFO: 💸 Après DÉBIT: {"amount":100000,"total":836500.0} 
-[2026-01-04 06:32:23] local.INFO: 🎲 Résultat RNG: {"result":"spade,diamond,heart,diamond,diamond,star,star,diamond,spade","is_winner":true,"multiplier":3.0,"payout":400000.0} 
-[2026-01-04 06:32:23] local.INFO: ✅ Après CRÉDIT: {"payout":400000.0,"total":1236500.0} 
-[2026-01-04 06:39:05] local.INFO: 💰 Wallet AVANT: {"main":"1236500.00","bonus":"0.00","total":1236500.0} 
-[2026-01-04 06:39:05] local.INFO: 💸 Après DÉBIT: {"amount":10000,"total":1226500.0} 
-[2026-01-04 06:39:05] local.INFO: 🎲 Résultat RNG: {"result":"club,diamond,star,heart,spade,star,heart,diamond,club","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 06:39:05] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 06:39:20] local.INFO: 💰 Wallet AVANT: {"main":"1226500.00","bonus":"0.00","total":1226500.0} 
-[2026-01-04 06:39:20] local.INFO: 💸 Après DÉBIT: {"amount":10000,"total":1216500.0} 
-[2026-01-04 06:39:20] local.INFO: 🎲 Résultat RNG: {"result":"heart,heart,heart,diamond,heart,heart,heart,heart,heart","is_winner":true,"multiplier":10.0,"payout":110000.0} 
-[2026-01-04 06:39:20] local.INFO: ✅ Après CRÉDIT: {"payout":110000.0,"total":1326500.0} 
-[2026-01-04 06:39:32] local.INFO: 💰 Wallet AVANT: {"main":"1326500.00","bonus":"0.00","total":1326500.0} 
-[2026-01-04 06:39:32] local.INFO: 💸 Après DÉBIT: {"amount":10000,"total":1316500.0} 
-[2026-01-04 06:39:32] local.INFO: 🎲 Résultat RNG: {"result":"heart,heart,heart,diamond,heart,heart,spade,heart,heart","is_winner":true,"multiplier":10.0,"payout":110000.0} 
-[2026-01-04 06:39:32] local.INFO: ✅ Après CRÉDIT: {"payout":110000.0,"total":1426500.0} 
-[2026-01-04 06:39:39] local.INFO: 💰 Wallet AVANT: {"main":"1426500.00","bonus":"0.00","total":1426500.0} 
-[2026-01-04 06:39:39] local.INFO: 💸 Après DÉBIT: {"amount":10000,"total":1416500.0} 
-[2026-01-04 06:39:39] local.INFO: 🎲 Résultat RNG: {"result":"star,heart,club,star,star,star,club,club,club","is_winner":true,"multiplier":3.0,"payout":40000.0} 
-[2026-01-04 06:39:39] local.INFO: ✅ Après CRÉDIT: {"payout":40000.0,"total":1456500.0} 
-[2026-01-04 06:39:47] local.INFO: 💰 Wallet AVANT: {"main":"1456500.00","bonus":"0.00","total":1456500.0} 
-[2026-01-04 06:39:47] local.INFO: 💸 Après DÉBIT: {"amount":10000,"total":1446500.0} 
-[2026-01-04 06:39:47] local.INFO: 🎲 Résultat RNG: {"result":"heart,club,heart,heart,heart,diamond,diamond,spade,diamond","is_winner":true,"multiplier":3.0,"payout":40000.0} 
-[2026-01-04 06:39:47] local.INFO: ✅ Après CRÉDIT: {"payout":40000.0,"total":1486500.0} 
-[2026-01-04 06:39:54] local.INFO: 💰 Wallet AVANT: {"main":"1486500.00","bonus":"0.00","total":1486500.0} 
-[2026-01-04 06:39:54] local.INFO: 💸 Après DÉBIT: {"amount":10000,"total":1476500.0} 
-[2026-01-04 06:39:54] local.INFO: 🎲 Résultat RNG: {"result":"star,diamond,diamond,club,heart,heart,club,star,spade","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 06:39:54] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 06:39:59] local.INFO: 💰 Wallet AVANT: {"main":"1476500.00","bonus":"0.00","total":1476500.0} 
-[2026-01-04 06:39:59] local.INFO: 💸 Après DÉBIT: {"amount":10000,"total":1466500.0} 
-[2026-01-04 06:39:59] local.INFO: 🎲 Résultat RNG: {"result":"heart,star,diamond,club,diamond,club,heart,spade,star","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 06:39:59] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 06:43:44] local.INFO: 💰 Wallet AVANT: {"main":"1466500.00","bonus":"0.00","total":1466500.0} 
-[2026-01-04 06:43:44] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1461500.0} 
-[2026-01-04 06:43:44] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 06:43:44] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1476500.0} 
-[2026-01-04 06:43:56] local.INFO: 💰 Wallet AVANT: {"main":"1476500.00","bonus":"0.00","total":1476500.0} 
-[2026-01-04 06:43:56] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1471500.0} 
-[2026-01-04 06:43:56] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 06:43:56] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 07:46:24] local.INFO: 💰 Wallet AVANT: {"main":"1471500.00","bonus":"0.00","total":1471500.0} 
-[2026-01-04 07:46:24] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1466500.0} 
-[2026-01-04 07:46:24] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 07:46:24] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 07:46:42] local.INFO: 💰 Wallet AVANT: {"main":"1466500.00","bonus":"0.00","total":1466500.0} 
-[2026-01-04 07:46:42] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1461500.0} 
-[2026-01-04 07:46:42] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 07:46:42] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:16:13] local.INFO: 💰 Wallet AVANT: {"main":"1461500.00","bonus":"0.00","total":1461500.0} 
-[2026-01-04 08:16:13] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1456500.0} 
-[2026-01-04 08:16:13] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:16:13] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:16:21] local.INFO: 💰 Wallet AVANT: {"main":"1456500.00","bonus":"0.00","total":1456500.0} 
-[2026-01-04 08:16:21] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1451500.0} 
-[2026-01-04 08:16:21] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:16:21] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:17:00] local.INFO: 💰 Wallet AVANT: {"main":"1451500.00","bonus":"0.00","total":1451500.0} 
-[2026-01-04 08:17:00] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1446500.0} 
-[2026-01-04 08:17:00] local.INFO: 🎲 Résultat RNG: {"result":"heads","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:17:00] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:21:28] local.INFO: 💰 Wallet AVANT: {"main":"1446500.00","bonus":"0.00","total":1446500.0} 
-[2026-01-04 08:21:29] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1441500.0} 
-[2026-01-04 08:21:29] local.INFO: 🎲 Résultat RNG: {"result":"heads","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:21:29] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1456500.0} 
-[2026-01-04 08:21:37] local.INFO: 💰 Wallet AVANT: {"main":"1456500.00","bonus":"0.00","total":1456500.0} 
-[2026-01-04 08:21:37] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1451500.0} 
-[2026-01-04 08:21:37] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:21:37] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1466500.0} 
-[2026-01-04 08:21:45] local.INFO: 💰 Wallet AVANT: {"main":"1466500.00","bonus":"0.00","total":1466500.0} 
-[2026-01-04 08:21:45] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1461500.0} 
-[2026-01-04 08:21:45] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:21:45] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1476500.0} 
-[2026-01-04 08:21:53] local.INFO: 💰 Wallet AVANT: {"main":"1476500.00","bonus":"0.00","total":1476500.0} 
-[2026-01-04 08:21:53] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1471500.0} 
-[2026-01-04 08:21:53] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:21:53] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1486500.0} 
-[2026-01-04 08:22:00] local.INFO: 💰 Wallet AVANT: {"main":"1486500.00","bonus":"0.00","total":1486500.0} 
-[2026-01-04 08:22:00] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1481500.0} 
-[2026-01-04 08:22:00] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:22:00] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1496500.0} 
-[2026-01-04 08:22:08] local.INFO: 💰 Wallet AVANT: {"main":"1496500.00","bonus":"0.00","total":1496500.0} 
-[2026-01-04 08:22:08] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1491500.0} 
-[2026-01-04 08:22:08] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:22:08] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1506500.0} 
-[2026-01-04 08:22:16] local.INFO: 💰 Wallet AVANT: {"main":"1506500.00","bonus":"0.00","total":1506500.0} 
-[2026-01-04 08:22:16] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1501500.0} 
-[2026-01-04 08:22:16] local.INFO: 🎲 Résultat RNG: {"result":"heads","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:22:16] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:22:25] local.INFO: 💰 Wallet AVANT: {"main":"1501500.00","bonus":"0.00","total":1501500.0} 
-[2026-01-04 08:22:25] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1496500.0} 
-[2026-01-04 08:22:25] local.INFO: 🎲 Résultat RNG: {"result":"heads","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:22:25] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:22:35] local.INFO: 💰 Wallet AVANT: {"main":"1496500.00","bonus":"0.00","total":1496500.0} 
-[2026-01-04 08:22:35] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1491500.0} 
-[2026-01-04 08:22:35] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:22:35] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1506500.0} 
-[2026-01-04 08:22:42] local.INFO: 💰 Wallet AVANT: {"main":"1506500.00","bonus":"0.00","total":1506500.0} 
-[2026-01-04 08:22:42] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1501500.0} 
-[2026-01-04 08:22:42] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:22:42] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1516500.0} 
-[2026-01-04 08:25:50] local.INFO: 💰 Wallet AVANT: {"main":"1516500.00","bonus":"0.00","total":1516500.0} 
-[2026-01-04 08:25:50] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1511500.0} 
-[2026-01-04 08:25:50] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:25:50] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:26:00] local.INFO: 💰 Wallet AVANT: {"main":"1511500.00","bonus":"0.00","total":1511500.0} 
-[2026-01-04 08:26:00] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1506500.0} 
-[2026-01-04 08:26:00] local.INFO: 🎲 Résultat RNG: {"result":"heads","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:26:00] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:26:07] local.INFO: 💰 Wallet AVANT: {"main":"1506500.00","bonus":"0.00","total":1506500.0} 
-[2026-01-04 08:26:07] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1501500.0} 
-[2026-01-04 08:26:07] local.INFO: 🎲 Résultat RNG: {"result":"tails","is_winner":true,"multiplier":2.0,"payout":15000.0} 
-[2026-01-04 08:26:07] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":1516500.0} 
-[2026-01-04 08:43:15] local.INFO: 💰 Wallet AVANT: {"main":"1516500.00","bonus":"0.00","total":1516500.0} 
-[2026-01-04 08:43:15] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1516400.0} 
-[2026-01-04 08:43:15] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:43:15] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:43:59] local.INFO: 💰 Wallet AVANT: {"main":"1516400.00","bonus":"0.00","total":1516400.0} 
-[2026-01-04 08:43:59] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1516300.0} 
-[2026-01-04 08:43:59] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:43:59] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 08:47:36] local.INFO: 💰 Wallet AVANT: {"main":"1516300.00","bonus":"0.00","total":1516300.0} 
-[2026-01-04 08:47:36] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1511300.0} 
-[2026-01-04 08:47:36] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 08:47:36] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:09:39] local.INFO: 💰 Wallet AVANT: {"main":"1511300.00","bonus":"0.00","total":1511300.0} 
-[2026-01-04 09:09:39] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1506300.0} 
-[2026-01-04 09:09:39] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:09:39] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:09:49] local.INFO: 💰 Wallet AVANT: {"main":"1506300.00","bonus":"0.00","total":1506300.0} 
-[2026-01-04 09:09:49] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1501300.0} 
-[2026-01-04 09:09:49] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:09:49] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:09:56] local.INFO: 💰 Wallet AVANT: {"main":"1501300.00","bonus":"0.00","total":1501300.0} 
-[2026-01-04 09:09:56] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1496300.0} 
-[2026-01-04 09:09:56] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:09:56] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:10:03] local.INFO: 💰 Wallet AVANT: {"main":"1496300.00","bonus":"0.00","total":1496300.0} 
-[2026-01-04 09:10:03] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1491300.0} 
-[2026-01-04 09:10:03] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:10:03] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:10:09] local.INFO: 💰 Wallet AVANT: {"main":"1491300.00","bonus":"0.00","total":1491300.0} 
-[2026-01-04 09:10:09] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1486300.0} 
-[2026-01-04 09:10:09] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:10:09] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:10:20] local.INFO: 💰 Wallet AVANT: {"main":"1486300.00","bonus":"0.00","total":1486300.0} 
-[2026-01-04 09:10:20] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1481300.0} 
-[2026-01-04 09:10:20] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:10:20] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:10:29] local.INFO: 💰 Wallet AVANT: {"main":"1481300.00","bonus":"0.00","total":1481300.0} 
-[2026-01-04 09:10:29] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1476300.0} 
-[2026-01-04 09:10:29] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:10:29] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:11:38] local.INFO: 💰 Wallet AVANT: {"main":"1476300.00","bonus":"0.00","total":1476300.0} 
-[2026-01-04 09:11:38] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1476200.0} 
-[2026-01-04 09:11:38] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":3.0,"payout":400.0} 
-[2026-01-04 09:11:38] local.INFO: ✅ Après CRÉDIT: {"payout":400.0,"total":1476600.0} 
-[2026-01-04 09:11:49] local.INFO: 💰 Wallet AVANT: {"main":"1476600.00","bonus":"0.00","total":1476600.0} 
-[2026-01-04 09:11:49] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1471600.0} 
-[2026-01-04 09:11:49] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:11:49] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:11:58] local.INFO: 💰 Wallet AVANT: {"main":"1471600.00","bonus":"0.00","total":1471600.0} 
-[2026-01-04 09:11:58] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1466600.0} 
-[2026-01-04 09:11:58] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:11:58] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:12:22] local.INFO: 💰 Wallet AVANT: {"main":"1466600.00","bonus":"0.00","total":1466600.0} 
-[2026-01-04 09:12:22] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1466500.0} 
-[2026-01-04 09:12:22] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:12:22] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:12:31] local.INFO: 💰 Wallet AVANT: {"main":"1466500.00","bonus":"0.00","total":1466500.0} 
-[2026-01-04 09:12:31] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1461500.0} 
-[2026-01-04 09:12:31] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:12:31] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:12:37] local.INFO: 💰 Wallet AVANT: {"main":"1461500.00","bonus":"0.00","total":1461500.0} 
-[2026-01-04 09:12:37] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1456500.0} 
-[2026-01-04 09:12:37] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":true,"multiplier":3.0,"payout":20000.0} 
-[2026-01-04 09:12:37] local.INFO: ✅ Après CRÉDIT: {"payout":20000.0,"total":1476500.0} 
-[2026-01-04 09:12:48] local.INFO: 💰 Wallet AVANT: {"main":"1476500.00","bonus":"0.00","total":1476500.0} 
-[2026-01-04 09:12:48] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":1471500.0} 
-[2026-01-04 09:12:48] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:12:48] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:15:35] local.INFO: 💰 Wallet AVANT: {"main":"1471500.00","bonus":"0.00","total":1471500.0} 
-[2026-01-04 09:15:35] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471400.0} 
-[2026-01-04 09:15:35] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:15:35] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:16:00] local.INFO: 💰 Wallet AVANT: {"main":"1471400.00","bonus":"0.00","total":1471400.0} 
-[2026-01-04 09:16:00] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471300.0} 
-[2026-01-04 09:16:00] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:16:00] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:16:10] local.INFO: 💰 Wallet AVANT: {"main":"1471300.00","bonus":"0.00","total":1471300.0} 
-[2026-01-04 09:16:10] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471200.0} 
-[2026-01-04 09:16:10] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":3.0,"payout":400.0} 
-[2026-01-04 09:16:10] local.INFO: ✅ Après CRÉDIT: {"payout":400.0,"total":1471600.0} 
-[2026-01-04 09:16:16] local.INFO: 💰 Wallet AVANT: {"main":"1471600.00","bonus":"0.00","total":1471600.0} 
-[2026-01-04 09:16:16] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471500.0} 
-[2026-01-04 09:16:16] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:16:16] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:16:21] local.INFO: 💰 Wallet AVANT: {"main":"1471500.00","bonus":"0.00","total":1471500.0} 
-[2026-01-04 09:16:21] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471400.0} 
-[2026-01-04 09:16:21] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:16:21] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:23:43] local.INFO: 💰 Wallet AVANT: {"main":"1471400.00","bonus":"0.00","total":1471400.0} 
-[2026-01-04 09:23:43] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471300.0} 
-[2026-01-04 09:23:43] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":true,"multiplier":2.0,"payout":300.0} 
-[2026-01-04 09:23:43] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":1471600.0} 
-[2026-01-04 09:23:51] local.INFO: 💰 Wallet AVANT: {"main":"1471600.00","bonus":"0.00","total":1471600.0} 
-[2026-01-04 09:23:51] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471500.0} 
-[2026-01-04 09:23:51] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":true,"multiplier":2.0,"payout":300.0} 
-[2026-01-04 09:23:51] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":1471800.0} 
-[2026-01-04 09:24:22] local.INFO: 💰 Wallet AVANT: {"main":"1471800.00","bonus":"0.00","total":1471800.0} 
-[2026-01-04 09:24:22] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471700.0} 
-[2026-01-04 09:24:22] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":true,"multiplier":2.0,"payout":300.0} 
-[2026-01-04 09:24:22] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":1472000.0} 
-[2026-01-04 09:24:37] local.INFO: 💰 Wallet AVANT: {"main":"1472000.00","bonus":"0.00","total":1472000.0} 
-[2026-01-04 09:24:37] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471900.0} 
-[2026-01-04 09:24:37] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:24:37] local.INFO: ❌ PERTE - Pas de crédit  
-[2026-01-04 09:24:58] local.INFO: 💰 Wallet AVANT: {"main":"1471900.00","bonus":"0.00","total":1471900.0} 
-[2026-01-04 09:24:58] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":1471800.0} 
-[2026-01-04 09:24:58] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":false,"multiplier":0,"payout":0} 
-[2026-01-04 09:24:58] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-01 13:26:00] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":87,"reference":"VM-SCYU4KCO","final_score":"2-1","result":"home_win"} 
+[2026-02-01 13:26:00] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":87,"reference":"VM-SCYU4KCO","team_home":"Real Madrid","team_away":"FC Barcelona","team_home_logo":"logo_equipe/real.png","team_away_logo":"logo_equipe/barca.png","sport_type":"football","league":"La Liga","season":"2024/2025","duration":3,"status":"completed","score_home":2,"score_away":1,"score_first_half_home":1,"score_first_half_away":0,"result":"home_win","starts_at":"2026-02-01T12:20:44.000000Z","ends_at":"2026-02-01T12:26:00.000000Z","match_events":[{"event_type":"goal","team":"home","minute":23,"player":"Vinicius Jr"},{"event_type":"yellow_card","team":"away","minute":38,"player":"Gavi"},{"event_type":"goal","team":"home","minute":67,"player":"Benzema"},{"event_type":"goal","team":"away","minute":78,"player":"Lewandowski"},{"event_type":"red_card","team":"away","minute":85,"player":"Sergio Busquets"}]}} 
+[2026-02-01 13:36:00] local.INFO: 🎮 [Event] VirtualMatchStarted créé {"match_id":90,"reference":"VM-G5EW59XI","teams":"Atletico Madrid vs Real Madrid"} 
+[2026-02-01 13:36:00] local.INFO: 📡 [Broadcast] VirtualMatchStarted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2024/2025","duration":1,"status":"live","score_home":0,"score_away":0,"starts_at":"2026-02-01T12:36:00.000000Z","ends_at":null}} 
+[2026-02-01 13:36:01] local.INFO: 🎮 [SimulateVirtualMatch] Démarrage de la simulation {"match_id":90,"reference":"VM-G5EW59XI","duration":1} 
+[2026-02-01 13:36:01] local.INFO: 📋 [SimulateVirtualMatch] Événements configurés {"count":0,"events":[]} 
+[2026-02-01 13:36:01] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 1/1  
+[2026-02-01 13:37:01] local.INFO: 🏁 [SimulateVirtualMatch] FIN DU MATCH ! Score final: 0-0  
+[2026-02-01 13:37:01] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":90,"reference":"VM-G5EW59XI","final_score":"0-0","result":"draw"} 
+[2026-02-01 13:37:01] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2024/2025","duration":1,"status":"completed","score_home":0,"score_away":0,"score_first_half_home":0,"score_first_half_away":0,"result":"draw","starts_at":"2026-02-01T12:36:00.000000Z","ends_at":"2026-02-01T12:37:01.000000Z","match_events":[]}} 
+[2026-02-01 13:37:23] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":90,"reference":"VM-G5EW59XI","teams":"Atletico Madrid vs Real Madrid","status":"upcoming","starts_at":"2026-02-01T14:35:00.000000Z"} 
+[2026-02-01 13:37:23] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":90,"status":"upcoming"} 
+[2026-02-01 13:37:23] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":90,"reference":"VM-G5EW59XI","status":"upcoming"} 
+[2026-02-01 13:41:37] local.ERROR: Command "tinker" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"tinker\" is not defined. at /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php:759)
+[stacktrace]
+#0 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php(298): Symfony\\Component\\Console\\Application->find('tinker')
+#1 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php(195): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 {main}
+"} 
+[2026-02-01 15:39:01] local.INFO: 🎮 [Event] VirtualMatchStarted créé {"match_id":90,"reference":"VM-G5EW59XI","teams":"Atletico Madrid vs Real Madrid"} 
+[2026-02-01 15:39:01] local.INFO: 📡 [Broadcast] VirtualMatchStarted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":1,"status":"live","score_home":0,"score_away":0,"score":"0 - 0","starts_at":"2026-02-01T14:39:01.000000Z","ends_at":null,"bet_closure_seconds":3,"min_bet_amount":"200.00","max_bet_amount":"150000.00","available_markets":["first_half","result","double_chance","over_under","exact_score","handicap","both_teams_score"],"odds":{"result":[],"both_teams_score":[],"over_under":[],"double_chance":[],"exact_score":[],"first_half":[],"handicap":[]},"is_open_for_bets":false}} 
+[2026-02-01 15:39:02] local.INFO: 🎮 [SimulateVirtualMatch] Démarrage de la simulation {"match_id":90,"reference":"VM-G5EW59XI","duration":1} 
+[2026-02-01 15:39:02] local.INFO: 📋 [SimulateVirtualMatch] Événements configurés {"count":3,"events":[{"event_type":"goal","team":"home","minute":"2","player":null},{"event_type":"goal","team":"away","minute":"3","player":null},{"event_type":"goal","team":"home","minute":"4","player":null}]} 
+[2026-02-01 15:39:02] local.INFO: ⏱️ [SimulateVirtualMatch] Minute 1/1  
+[2026-02-01 15:40:03] local.INFO: 🏁 [SimulateVirtualMatch] FIN DU MATCH ! Score final: 0-0  
+[2026-02-01 15:40:03] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":90,"reference":"VM-G5EW59XI","final_score":"2-1","result":"home_win"} 
+[2026-02-01 15:40:03] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":1,"status":"completed","score_home":2,"score_away":1,"score_first_half_home":0,"score_first_half_away":0,"result":"home_win","starts_at":"2026-02-01T14:39:01.000000Z","ends_at":"2026-02-01T14:40:03.000000Z","match_events":[{"event_type":"goal","team":"home","minute":"2","player":null},{"event_type":"goal","team":"away","minute":"3","player":null},{"event_type":"goal","team":"home","minute":"4","player":null}]}} 
+[2026-02-01 15:50:53] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":90,"reference":"VM-G5EW59XI","teams":"Atletico Madrid vs Real Madrid","status":"upcoming","starts_at":"2026-02-01T16:40:00.000000Z"} 
+[2026-02-01 15:50:53] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":90,"status":"upcoming"} 
+[2026-02-01 15:50:53] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":90,"reference":"VM-G5EW59XI","status":"upcoming"} 
+[2026-02-01 16:24:37] local.INFO: Creating Coinbase charge {"payload":{"name":"Dépôt Winpawa","description":"Dépôt de 1000.00 FCFA sur Winpawa","pricing_type":"fixed_price","local_price":{"amount":"1.67","currency":"USD"},"metadata":{"transaction_id":1,"transaction_reference":"TXN-GCLTT00CMC6Y","user_id":19,"amount_fcfa":"1000.00"},"redirect_url":"http://127.0.0.1:8001/payment/success","cancel_url":"http://127.0.0.1:8001/payment/cancel"}} 
+[2026-02-01 16:24:38] local.ERROR: Coinbase charge creation failed {"status":401,"error":{"error":{"type":"authentication_error","message":"No such API key.","code":"no_such_api_key"}}} 
+[2026-02-01 17:10:20] local.INFO: 🎮 [Event] VirtualMatchStarted créé {"match_id":90,"reference":"VM-G5EW59XI","teams":"Atletico Madrid vs Real Madrid"} 
+[2026-02-01 17:10:20] local.INFO: 📡 [Broadcast] VirtualMatchStarted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":1,"status":"live","score_home":0,"score_away":0,"score":"0 - 0","starts_at":"2026-02-01T16:10:20.000000Z","ends_at":"2026-02-01T16:45:00.000000Z","bet_closure_seconds":3,"min_bet_amount":"200.00","max_bet_amount":"150000.00","available_markets":["first_half","result","double_chance","over_under","exact_score","handicap","both_teams_score"],"odds":{"result":[],"both_teams_score":[],"over_under":[],"double_chance":[],"exact_score":[],"first_half":[],"handicap":[]},"is_open_for_bets":false}} 
+[2026-02-01 17:14:04] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":90,"reference":"VM-G5EW59XI","final_score":"2-1","result":"home_win"} 
+[2026-02-01 17:14:04] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":1,"status":"completed","score_home":2,"score_away":1,"score_first_half_home":0,"score_first_half_away":0,"result":"home_win","starts_at":"2026-02-01T16:10:20.000000Z","ends_at":"2026-02-01T16:14:04.000000Z","match_events":[{"event_type":"goal","team":"home","minute":"2","player":null},{"event_type":"goal","team":"away","minute":"3","player":null},{"event_type":"goal","team":"home","minute":"4","player":null}]}} 
+[2026-02-01 20:50:41] local.INFO: ✏️ [Event] VirtualMatchEdited créé {"match_id":90,"reference":"VM-G5EW59XI","teams":"Atletico Madrid vs Real Madrid","status":"upcoming","starts_at":"2026-02-01T20:30:00.000000Z"} 
+[2026-02-01 20:50:41] local.INFO: 📡 [Broadcast] VirtualMatchEdited data {"match_id":90,"status":"upcoming"} 
+[2026-02-01 20:50:41] local.INFO: ✏️ [Filament] Match virtuel modifié et événement déclenché {"match_id":90,"reference":"VM-G5EW59XI","status":"upcoming"} 
+[2026-02-01 21:00:53] local.INFO: 💰 Wallet AVANT: {"main":"500000.00","bonus":"0.00","total":500000.0} 
+[2026-02-01 21:00:53] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":495000.0} 
+[2026-02-01 21:00:53] local.INFO: 🎲 Résultat RNG: {"result":"red","is_winner":true,"multiplier":2.0,"payout":15000.0} 
+[2026-02-01 21:00:53] local.INFO: ✅ Après CRÉDIT: {"payout":15000.0,"total":510000.0} 
+[2026-02-01 21:01:41] local.INFO: 💰 Wallet AVANT: {"main":"510000.00","bonus":"0.00","total":510000.0} 
+[2026-02-01 21:01:41] local.INFO: 💸 Après DÉBIT: {"amount":5000,"total":505000.0} 
+[2026-02-01 21:01:41] local.INFO: 🎲 Résultat RNG: {"result":"red","is_winner":true,"multiplier":3.0,"payout":20000.0} 
+[2026-02-01 21:01:41] local.INFO: ✅ Après CRÉDIT: {"payout":20000.0,"total":525000.0} 
+[2026-02-01 21:03:03] local.INFO: 💰 Wallet AVANT: {"main":"525000.00","bonus":"0.00","total":525000.0} 
+[2026-02-01 21:03:03] local.INFO: 💸 Après DÉBIT: {"amount":3000,"total":522000.0} 
+[2026-02-01 21:03:03] local.INFO: 🎲 Résultat RNG: {"result":"green","is_winner":true,"multiplier":2.0,"payout":9000.0} 
+[2026-02-01 21:03:03] local.INFO: ✅ Après CRÉDIT: {"payout":9000.0,"total":531000.0} 
+[2026-02-01 21:03:34] local.INFO: 💰 Wallet AVANT: {"main":"531000.00","bonus":"0.00","total":531000.0} 
+[2026-02-01 21:03:34] local.INFO: 💸 Après DÉBIT: {"amount":3000,"total":528000.0} 
+[2026-02-01 21:03:34] local.INFO: 🎲 Résultat RNG: {"result":"green","is_winner":true,"multiplier":2.0,"payout":9000.0} 
+[2026-02-01 21:03:34] local.INFO: ✅ Après CRÉDIT: {"payout":9000.0,"total":537000.0} 
+[2026-02-01 21:03:50] local.INFO: 💰 Wallet AVANT: {"main":"537000.00","bonus":"0.00","total":537000.0} 
+[2026-02-01 21:03:50] local.INFO: 💸 Après DÉBIT: {"amount":3000,"total":534000.0} 
+[2026-02-01 21:03:50] local.INFO: 🎲 Résultat RNG: {"result":"yellow","is_winner":true,"multiplier":2.0,"payout":9000.0} 
+[2026-02-01 21:03:50] local.INFO: ✅ Après CRÉDIT: {"payout":9000.0,"total":543000.0} 
+[2026-02-01 21:04:27] local.INFO: 💰 Wallet AVANT: {"main":"543000.00","bonus":"0.00","total":543000.0} 
+[2026-02-01 21:04:27] local.INFO: 💸 Après DÉBIT: {"amount":3000,"total":540000.0} 
+[2026-02-01 21:04:27] local.INFO: 🎲 Résultat RNG: {"result":"blue","is_winner":true,"multiplier":3.0,"payout":12000.0} 
+[2026-02-01 21:04:27] local.INFO: ✅ Après CRÉDIT: {"payout":12000.0,"total":552000.0} 
+[2026-02-01 21:04:53] local.INFO: 💰 Wallet AVANT: {"main":"552000.00","bonus":"0.00","total":552000.0} 
+[2026-02-01 21:04:53] local.INFO: 💸 Après DÉBIT: {"amount":3000,"total":549000.0} 
+[2026-02-01 21:04:53] local.INFO: 🎲 Résultat RNG: {"result":"red","is_winner":true,"multiplier":2.0,"payout":9000.0} 
+[2026-02-01 21:04:53] local.INFO: ✅ Après CRÉDIT: {"payout":9000.0,"total":558000.0} 
+[2026-02-01 21:05:29] local.INFO: 💰 Wallet AVANT: {"main":"558000.00","bonus":"0.00","total":558000.0} 
+[2026-02-01 21:05:29] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":557900.0} 
+[2026-02-01 21:05:29] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0,"payout":0} 
+[2026-02-01 21:05:29] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-01 21:11:34] local.INFO: 🎮 [Event] VirtualMatchStarted créé {"match_id":90,"reference":"VM-G5EW59XI","teams":"Atletico Madrid vs Real Madrid"} 
+[2026-02-01 21:11:34] local.INFO: 📡 [Broadcast] VirtualMatchStarted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"live","score_home":0,"score_away":0,"score":"0 - 0","starts_at":"2026-02-01T20:11:34.000000Z","ends_at":"2026-02-01T20:35:00.000000Z","bet_closure_seconds":3,"min_bet_amount":"200.00","max_bet_amount":"150000.00","available_markets":["first_half","result","double_chance","over_under","exact_score","handicap","both_teams_score"],"odds":{"result":[],"both_teams_score":[],"over_under":[],"double_chance":[],"exact_score":[],"first_half":[],"handicap":[]},"is_open_for_bets":false}} 
+[2026-02-01 21:15:05] local.INFO: 💰 Wallet AVANT: {"main":"552700.00","bonus":"0.00","total":552700.0} 
+[2026-02-01 21:15:05] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":552600.0} 
+[2026-02-01 21:15:05] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":3.0,"payout":400.0} 
+[2026-02-01 21:15:05] local.INFO: ✅ Après CRÉDIT: {"payout":400.0,"total":553000.0} 
+[2026-02-01 21:19:01] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":90,"reference":"VM-G5EW59XI","final_score":"2-1","result":"home_win"} 
+[2026-02-01 21:19:01] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"completed","score_home":2,"score_away":1,"score_first_half_home":0,"score_first_half_away":0,"result":"home_win","starts_at":"2026-02-01T20:11:34.000000Z","ends_at":"2026-02-01T20:19:01.000000Z","match_events":[{"event_type":"goal","team":"home","minute":"2","player":null},{"event_type":"goal","team":"away","minute":"3","player":null},{"event_type":"goal","team":"home","minute":"4","player":null}]}} 

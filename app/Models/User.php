@@ -29,6 +29,7 @@ class User extends Authenticatable
         'is_verified',
         'date_of_birth',
         'country',
+        'currency',
         'city',
         'avatar',
         'last_login_at',

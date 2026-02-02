@@ -18,8 +18,9 @@ class GameController extends Controller
 
     public function index(): JsonResponse
     {
-        $games = Game::active()
-            ->ordered()
+        // Retourner TOUS les jeux (actifs et inactifs)
+        // Le frontend affichera un cadenas pour les jeux inactifs/non configurés
+        $games = Game::ordered()
             ->get()
             ->map(fn ($game) => $this->formatGame($game));
 
@@ -46,13 +47,8 @@ class GameController extends Controller
 
     public function show(Game $game): JsonResponse
     {
-        if (!$game->is_active) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Ce jeu n\'est pas disponible.',
-            ], 404);
-        }
-
+        // Retourner les données du jeu même s'il est inactif
+        // Le frontend gérera l'affichage du cadenas
         return response()->json([
             'success' => true,
             'data' => $this->formatGame($game, true),
@@ -205,11 +201,13 @@ class GameController extends Controller
             'thumbnail' => $game->image ? url('images/' . $game->image) : null,
             'banner' => $game->banner ? url('storage/' . $game->banner) : null,
             'rtp' => (float) $game->rtp,
-            'win_frequency' => (float) $game->win_frequency, // ← AJOUTÉ
+            'win_frequency' => (float) $game->win_frequency,
             'min_bet' => (float) $game->min_bet,
             'max_bet' => (float) $game->max_bet,
             'multipliers' => $game->multipliers,
             'is_featured' => $game->is_featured,
+            'is_active' => $game->is_active,
+            'is_configured' => $game->is_configured,
         ];
 
         if ($withDetails) {

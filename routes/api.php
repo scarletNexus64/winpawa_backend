@@ -7,7 +7,9 @@ use App\Http\Controllers\Api\SportController;
 use App\Http\Controllers\Api\WalletController;
 use App\Http\Controllers\Api\AffiliateController;
 use App\Http\Controllers\Api\VirtualMatchController;
+use App\Http\Controllers\Api\VirtualMatchStreamController;
 use App\Http\Controllers\Api\LegalController;
+use App\Http\Controllers\Api\CoinbaseWebhookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,11 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
+    Route::post('register-flash', [AuthController::class, 'registerFlash']);
+    Route::post('register-phone', [AuthController::class, 'registerPhone']);
+    Route::post('register-email', [AuthController::class, 'registerEmail']);
     Route::post('login', [AuthController::class, 'login']);
+    Route::get('currencies', [AuthController::class, 'getCurrencies']);
 });
 
 // Public categories list
@@ -45,6 +51,7 @@ Route::prefix('virtual-match')->group(function () {
     Route::get('upcoming', [VirtualMatchController::class, 'upcoming']);
     Route::get('live', [VirtualMatchController::class, 'live']);
     Route::get('results', [VirtualMatchController::class, 'results']);
+    Route::get('stream', [VirtualMatchStreamController::class, 'stream']); // SSE real-time updates
 });
 
 // Legal pages (public)
@@ -90,6 +97,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('virtual-match')->group(function () {
         Route::post('{virtualMatch}/bet', [VirtualMatchController::class, 'placeBet']);
         Route::get('my-bets', [VirtualMatchController::class, 'myBets']);
+        Route::get('my-history', [VirtualMatchController::class, 'myHistory']);
+
+        // Gestion des paris existants
+        Route::get('{virtualMatch}/my-bets', [VirtualMatchController::class, 'getMatchBets']);
+        Route::put('bets/{bet}', [VirtualMatchController::class, 'updateBet']);
+        Route::delete('bets/{bet}', [VirtualMatchController::class, 'deleteBet']);
     });
 });
 
@@ -97,4 +110,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::prefix('webhooks')->group(function () {
     Route::post('mtn-momo', [WalletController::class, 'mtnCallback']);
     Route::post('orange-money', [WalletController::class, 'orangeCallback']);
+    Route::post('coinbase', [CoinbaseWebhookController::class, 'handle']);
 });

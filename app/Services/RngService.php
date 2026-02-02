@@ -38,6 +38,46 @@ class RngService
             } else {
                 $result = $this->generateLosingDiceResult($bet->choice, $hash);
             }
+        } elseif ($game->type === GameType::TREASURE_BOX) {
+            // Pour le Coffre au Trésor : si isWinner, retourner le choix du joueur
+            // Sinon, retourner un autre coffre
+            if ($isWinner) {
+                $result = $bet->choice; // Le coffre choisi par le joueur
+            } else {
+                $result = $this->generateLosingTreasureBox($bet->choice, $hash, $game);
+            }
+        } elseif ($game->type === GameType::LUCKY_NUMBER) {
+            // Pour le Nombre Chanceux : si isWinner, retourner le choix du joueur
+            // Sinon, retourner un autre nombre
+            if ($isWinner) {
+                $result = $bet->choice; // Le nombre choisi par le joueur
+            } else {
+                $result = $this->generateLosingLuckyNumber($bet->choice, $hash, $game);
+            }
+        } elseif ($game->type === GameType::COLOR_ROULETTE) {
+            // Pour la Roulette Couleurs : si isWinner, retourner le choix du joueur
+            // Sinon, retourner une autre couleur
+            if ($isWinner) {
+                $result = $bet->choice; // La couleur choisie par le joueur
+            } else {
+                $result = $this->generateLosingColorRoulette($bet->choice, $hash, $game);
+            }
+        } elseif ($game->type === GameType::LUDO) {
+            // Pour Course de Pions : si isWinner, retourner le choix du joueur
+            // Sinon, retourner un autre pion
+            if ($isWinner) {
+                $result = $bet->choice; // Le pion choisi par le joueur
+            } else {
+                $result = $this->generateLosingLudo($bet->choice, $hash);
+            }
+        } elseif ($game->type === GameType::QUIZ) {
+            // Pour Quiz : si isWinner, retourner le choix du joueur
+            // Sinon, retourner une autre réponse
+            if ($isWinner) {
+                $result = $bet->choice; // La réponse choisie par le joueur
+            } else {
+                $result = $this->generateLosingQuiz($bet->choice, $hash);
+            }
         } else {
             // Générer le résultat spécifique au type de jeu
             $result = $this->generateGameSpecificResult($game, $bet->choice, $hash);
@@ -165,6 +205,112 @@ class RngService
         return (string) $winningBox;
     }
 
+    /**
+     * Générer un résultat de coffre PERDANT (différent du choix du joueur)
+     */
+    protected function generateLosingTreasureBox(string $choice, string $hash, Game $game): string
+    {
+        $boxes = $game->settings['boxes_count'] ?? 3;
+        $playerChoice = (int) $choice;
+
+        // Générer tous les coffres sauf celui choisi par le joueur
+        $otherBoxes = [];
+        for ($i = 1; $i <= $boxes; $i++) {
+            if ($i !== $playerChoice) {
+                $otherBoxes[] = $i;
+            }
+        }
+
+        // Choisir un coffre aléatoire parmi les autres
+        $index = hexdec(substr($hash, 8, 2)) % count($otherBoxes);
+        return (string) $otherBoxes[$index];
+    }
+
+    /**
+     * Générer un nombre PERDANT (différent du choix du joueur)
+     */
+    protected function generateLosingLuckyNumber(string $choice, string $hash, Game $game): string
+    {
+        $min = $game->settings['range_min'] ?? 1;
+        $max = $game->settings['range_max'] ?? 10;
+        $playerChoice = (int) $choice;
+
+        // Générer tous les nombres sauf celui choisi par le joueur
+        $otherNumbers = [];
+        for ($i = $min; $i <= $max; $i++) {
+            if ($i !== $playerChoice) {
+                $otherNumbers[] = $i;
+            }
+        }
+
+        // Choisir un nombre aléatoire parmi les autres
+        $index = hexdec(substr($hash, 10, 2)) % count($otherNumbers);
+        return (string) $otherNumbers[$index];
+    }
+
+    /**
+     * Générer une couleur PERDANTE (différente du choix du joueur)
+     */
+    protected function generateLosingColorRoulette(string $choice, string $hash, Game $game): string
+    {
+        $colors = $game->settings['colors'] ?? ['red', 'blue', 'green', 'yellow'];
+        $playerChoice = strtolower($choice);
+
+        // Générer toutes les couleurs sauf celle choisie par le joueur
+        $otherColors = [];
+        foreach ($colors as $color) {
+            if (strtolower($color) !== $playerChoice) {
+                $otherColors[] = $color;
+            }
+        }
+
+        // Choisir une couleur aléatoire parmi les autres
+        $index = hexdec(substr($hash, 12, 2)) % count($otherColors);
+        return $otherColors[$index];
+    }
+
+    /**
+     * Générer un pion PERDANT (différent du choix du joueur)
+     */
+    protected function generateLosingLudo(string $choice, string $hash): string
+    {
+        $players = ['red', 'blue', 'green', 'yellow'];
+        $playerChoice = strtolower($choice);
+
+        // Générer tous les pions sauf celui choisi par le joueur
+        $otherPlayers = [];
+        foreach ($players as $player) {
+            if (strtolower($player) !== $playerChoice) {
+                $otherPlayers[] = $player;
+            }
+        }
+
+        // Choisir un pion aléatoire parmi les autres
+        $index = hexdec(substr($hash, 14, 2)) % count($otherPlayers);
+        return $otherPlayers[$index];
+    }
+
+    /**
+     * Générer une réponse PERDANTE (différente du choix du joueur)
+     */
+    protected function generateLosingQuiz(string $choice, string $hash): string
+    {
+        $options = ['A', 'B', 'C', 'D'];
+        $playerChoice = strtoupper($choice);
+
+        // Générer toutes les réponses sauf celle choisie par le joueur
+        $otherOptions = [];
+        foreach ($options as $option) {
+            if ($option !== $playerChoice) {
+                $otherOptions[] = $option;
+            }
+        }
+
+        // Choisir une réponse aléatoire parmi les autres
+        $index = hexdec(substr($hash, 16, 2)) % count($otherOptions);
+        return $otherOptions[$index];
+    }
+
     protected function luckyNumberResult(string $hash, Game $game): string
     {
         $min = $game->settings['range_min'] ?? 1;
@@ -263,9 +409,11 @@ class RngService
 
     protected function penaltyResult(string $hash): string
     {
-        $positions = ['left', 'center', 'right', 'top_left', 'top_right'];
-        $index = hexdec(substr($hash, 8, 2)) % count($positions);
-        return $positions[$index];
+        // Retourner un numéro de position (1-5) au lieu d'un nom
+        // Pour correspondre avec le choix du joueur qui envoie "1", "2", "3", "4", ou "5"
+        $positions = 5; // 5 positions disponibles
+        $position = (hexdec(substr($hash, 8, 2)) % $positions) + 1;
+        return (string) $position;
     }
 
     protected function ludoResult(string $hash): string

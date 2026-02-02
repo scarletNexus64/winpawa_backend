@@ -7,6 +7,10 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Models\AffiliateStats;
 use App\Models\UserBonus;
+use App\Models\Currency;
+use App\Services\UsernameGeneratorService;
+use App\Services\AvatarService;
+use App\Services\PasswordGeneratorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,12 +37,16 @@ class AuthController extends Controller
             $referrer = User::where('referral_code', $validated['referral_code'])->first();
         }
 
+        // Générer un avatar par défaut
+        $avatar = AvatarService::generate($validated['name']);
+
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
             'password' => Hash::make($validated['password']),
             'date_of_birth' => $validated['date_of_birth'],
+            'avatar' => $avatar,
             'referral_code' => User::generateReferralCode(),
             'referred_by' => $referrer?->id,
             'country' => 'CM',
@@ -75,21 +83,147 @@ class AuthController extends Controller
         ], 201);
     }
 
+    /**
+     * Inscription Flash - Mode 1
+     * Inscription rapide avec pays et devise
+     */
+    public function registerFlash(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'country' => ['required', 'string', 'size:2'], // Code pays ISO 2 lettres
+            'currency' => ['required', 'string', 'size:3', 'exists:currencies,code'], // Code devise ISO 3 lettres
+            'referral_code' => ['nullable', 'string', 'exists:users,referral_code'],
+        ]);
+
+        return $this->createUser([
+            'country' => strtoupper($validated['country']),
+            'currency' => strtoupper($validated['currency']),
+            'referral_code' => $validated['referral_code'] ?? null,
+        ]);
+    }
+
+    /**
+     * Inscription par téléphone - Mode 2
+     */
+    public function registerPhone(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'phone' => ['required', 'string', 'max:20', 'unique:users'],
+            'referral_code' => ['nullable', 'string', 'exists:users,referral_code'],
+        ]);
+
+        return $this->createUser([
+            'phone' => $validated['phone'],
+            'referral_code' => $validated['referral_code'] ?? null,
+        ]);
+    }
+
+    /**
+     * Inscription par email - Mode 3
+     */
+    public function registerEmail(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'referral_code' => ['nullable', 'string', 'exists:users,referral_code'],
+        ]);
+
+        return $this->createUser([
+            'email' => $validated['email'],
+            'referral_code' => $validated['referral_code'] ?? null,
+        ]);
+    }
+
+    /**
+     * Méthode commune pour créer un utilisateur
+     */
+    private function createUser(array $data): JsonResponse
+    {
+        $referrer = null;
+        if (!empty($data['referral_code'])) {
+            $referrer = User::where('referral_code', $data['referral_code'])->first();
+        }
+
+        // Générer un nom d'utilisateur unique
+        $username = UsernameGeneratorService::generate();
+
+        // Générer un mot de passe sécurisé
+        $generatedPassword = PasswordGeneratorService::generate();
+
+        // Générer un avatar par défaut avec les initiales
+        $avatar = AvatarService::generate($username);
+
+        $user = User::create([
+            'name' => $username,
+            'email' => $data['email'] ?? null,
+            'phone' => $data['phone'] ?? null,
+            'password' => Hash::make($generatedPassword),
+            'country' => $data['country'] ?? 'CM',
+            'currency' => $data['currency'] ?? 'XAF',
+            'avatar' => $avatar,
+            'referral_code' => User::generateReferralCode(),
+            'referred_by' => $referrer?->id,
+            'is_active' => true,
+            'is_verified' => false,
+        ]);
+
+        // Créer le wallet
+        Wallet::create([
+            'user_id' => $user->id,
+            'main_balance' => 0,
+            'bonus_balance' => 0,
+            'affiliate_balance' => 0,
+        ]);
+
+        // Créer les stats d'affiliation
+        AffiliateStats::create(['user_id' => $user->id]);
+
+        // Mettre à jour les stats du parrain
+        if ($referrer) {
+            $referrer->affiliateStats?->incrementReferrals();
+        }
+
+        // Assigner le rôle
+        $user->assignRole('user');
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Inscription réussie ! Bienvenue sur WINPAWA.',
+            'data' => [
+                'user' => $this->formatUser($user),
+                'token' => $token,
+                'credentials' => [
+                    'username' => $username,
+                    'password' => $generatedPassword,
+                ],
+            ],
+        ], 201);
+    }
+
     public function login(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'email' => ['required', 'string', 'email'],
+            'identifier' => ['required', 'string'], // Peut être email, phone ou username
             'password' => ['required', 'string'],
         ]);
 
-        if (!Auth::attempt($validated)) {
+        $identifier = $validated['identifier'];
+        $password = $validated['password'];
+
+        // Essayer de trouver l'utilisateur par email, phone ou name
+        $user = User::where('email', $identifier)
+            ->orWhere('phone', $identifier)
+            ->orWhere('name', $identifier)
+            ->first();
+
+        if (!$user || !Hash::check($password, $user->password)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Email ou mot de passe incorrect.',
+                'message' => 'Identifiants incorrects.',
             ], 401);
         }
-
-        $user = Auth::user();
 
         if (!$user->is_active) {
             return response()->json([
@@ -113,6 +247,23 @@ class AuthController extends Controller
                 'user' => $this->formatUser($user),
                 'token' => $token,
             ],
+        ]);
+    }
+
+    /**
+     * Récupérer la liste des devises disponibles
+     */
+    public function getCurrencies(): JsonResponse
+    {
+        $currencies = Currency::where('is_active', true)->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $currencies->map(fn($currency) => [
+                'code' => $currency->code,
+                'name' => $currency->name,
+                'symbol' => $currency->symbol,
+            ]),
         ]);
     }
 
