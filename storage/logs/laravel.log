@@ -279,3 +279,316 @@
 [2026-02-01 21:15:05] local.INFO: ✅ Après CRÉDIT: {"payout":400.0,"total":553000.0} 
 [2026-02-01 21:19:01] local.INFO: 🏁 [Event] VirtualMatchCompleted créé {"match_id":90,"reference":"VM-G5EW59XI","final_score":"2-1","result":"home_win"} 
 [2026-02-01 21:19:01] local.INFO: 📡 [Broadcast] VirtualMatchCompleted data {"match":{"id":90,"reference":"VM-G5EW59XI","team_home":"Atletico Madrid","team_away":"Real Madrid","team_home_logo":"logo_equipe/altelico.png","team_away_logo":"logo_equipe/real.png","sport_type":"football","league":"La Liga","season":"2025/2026","duration":5,"status":"completed","score_home":2,"score_away":1,"score_first_half_home":0,"score_first_half_away":0,"result":"home_win","starts_at":"2026-02-01T20:11:34.000000Z","ends_at":"2026-02-01T20:19:01.000000Z","match_events":[{"event_type":"goal","team":"home","minute":"2","player":null},{"event_type":"goal","team":"away","minute":"3","player":null},{"event_type":"goal","team":"home","minute":"4","player":null}]}} 
+[2026-02-06 17:44:04] local.ERROR: Command "tinker" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"tinker\" is not defined. at /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php:759)
+[stacktrace]
+#0 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php(298): Symfony\\Component\\Console\\Application->find('tinker')
+#1 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php(195): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 {main}
+"} 
+[2026-02-06 18:03:12] local.ERROR: Undefined array key "winning_segments" {"exception":"[object] (ErrorException(code: 0): Undefined array key \"winning_segments\" at /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/update_apple_fortune.php:38)
+[stacktrace]
+#0 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined array...', '/Users/macbookp...', 38)
+#1 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/update_apple_fortune.php(38): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined array...', '/Users/macbookp...', 38)
+#2 {main}
+"} 
+[2026-02-06 18:51:06] local.INFO: 💰 Wallet AVANT: {"main":"500000.00","bonus":"0.00","total":500000.0} 
+[2026-02-06 18:51:06] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":499900.0} 
+[2026-02-06 18:51:06] local.INFO: 🎲 Résultat RNG: {"result":"9","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 18:51:06] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 18:51:20] local.INFO: 💰 Wallet AVANT: {"main":"499900.00","bonus":"0.00","total":499900.0} 
+[2026-02-06 18:51:20] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":499800.0} 
+[2026-02-06 18:51:20] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":true,"multiplier":5.0,"payout":600.0} 
+[2026-02-06 18:51:20] local.INFO: ✅ Après CRÉDIT: {"payout":600.0,"total":500400.0} 
+[2026-02-06 18:51:37] local.INFO: 💰 Wallet AVANT: {"main":"500400.00","bonus":"0.00","total":500400.0} 
+[2026-02-06 18:51:37] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500300.0} 
+[2026-02-06 18:51:37] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 18:51:37] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 18:51:45] local.INFO: 💰 Wallet AVANT: {"main":"500300.00","bonus":"0.00","total":500300.0} 
+[2026-02-06 18:51:45] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500200.0} 
+[2026-02-06 18:51:45] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":300.0} 
+[2026-02-06 18:51:45] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":500500.0} 
+[2026-02-06 18:51:53] local.INFO: 💰 Wallet AVANT: {"main":"500500.00","bonus":"0.00","total":500500.0} 
+[2026-02-06 18:51:53] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500400.0} 
+[2026-02-06 18:51:53] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 18:51:53] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 18:52:06] local.INFO: 💰 Wallet AVANT: {"main":"500400.00","bonus":"0.00","total":500400.0} 
+[2026-02-06 18:52:06] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500300.0} 
+[2026-02-06 18:52:06] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 18:52:06] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 18:52:17] local.INFO: 💰 Wallet AVANT: {"main":"500300.00","bonus":"0.00","total":500300.0} 
+[2026-02-06 18:52:17] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500200.0} 
+[2026-02-06 18:52:17] local.INFO: 🎲 Résultat RNG: {"result":"7","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 18:52:17] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 18:52:25] local.INFO: 💰 Wallet AVANT: {"main":"500200.00","bonus":"0.00","total":500200.0} 
+[2026-02-06 18:52:25] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500100.0} 
+[2026-02-06 18:52:25] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 18:52:25] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 18:52:33] local.INFO: 💰 Wallet AVANT: {"main":"500100.00","bonus":"0.00","total":500100.0} 
+[2026-02-06 18:52:33] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500000.0} 
+[2026-02-06 18:52:33] local.INFO: 🎲 Résultat RNG: {"result":"9","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 18:52:33] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 18:52:43] local.INFO: 💰 Wallet AVANT: {"main":"500000.00","bonus":"0.00","total":500000.0} 
+[2026-02-06 18:52:43] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":499900.0} 
+[2026-02-06 18:52:43] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":300.0} 
+[2026-02-06 18:52:43] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":500200.0} 
+[2026-02-06 18:53:05] local.INFO: 💰 Wallet AVANT: {"main":"500200.00","bonus":"0.00","total":500200.0} 
+[2026-02-06 18:53:05] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500100.0} 
+[2026-02-06 18:53:05] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":true,"multiplier":5.0,"payout":600.0} 
+[2026-02-06 18:53:05] local.INFO: ✅ Après CRÉDIT: {"payout":600.0,"total":500700.0} 
+[2026-02-06 19:07:58] local.INFO: 💰 Wallet AVANT: {"main":"500700.00","bonus":"0.00","total":500700.0} 
+[2026-02-06 19:07:58] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500600.0} 
+[2026-02-06 19:07:58] local.INFO: 🎲 Résultat RNG: {"result":"9","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:07:58] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:08:06] local.INFO: 💰 Wallet AVANT: {"main":"500600.00","bonus":"0.00","total":500600.0} 
+[2026-02-06 19:08:06] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500500.0} 
+[2026-02-06 19:08:06] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":true,"multiplier":10.0,"payout":1100.0} 
+[2026-02-06 19:08:06] local.INFO: ✅ Après CRÉDIT: {"payout":1100.0,"total":501600.0} 
+[2026-02-06 19:23:38] local.INFO: 💰 Wallet AVANT: {"main":"501600.00","bonus":"0.00","total":501600.0} 
+[2026-02-06 19:23:38] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501500.0} 
+[2026-02-06 19:23:38] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":300.0} 
+[2026-02-06 19:23:38] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":501800.0} 
+[2026-02-06 19:24:28] local.INFO: 💰 Wallet AVANT: {"main":"501800.00","bonus":"0.00","total":501800.0} 
+[2026-02-06 19:24:28] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501700.0} 
+[2026-02-06 19:24:28] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:24:28] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:24:41] local.INFO: 💰 Wallet AVANT: {"main":"501700.00","bonus":"0.00","total":501700.0} 
+[2026-02-06 19:24:41] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501600.0} 
+[2026-02-06 19:24:41] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:24:41] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:24:49] local.INFO: 💰 Wallet AVANT: {"main":"501600.00","bonus":"0.00","total":501600.0} 
+[2026-02-06 19:24:49] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501500.0} 
+[2026-02-06 19:24:49] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":5.0,"payout":600.0} 
+[2026-02-06 19:24:49] local.INFO: ✅ Après CRÉDIT: {"payout":600.0,"total":502100.0} 
+[2026-02-06 19:26:47] local.INFO: 💰 Wallet AVANT: {"main":"502100.00","bonus":"0.00","total":502100.0} 
+[2026-02-06 19:26:47] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":502000.0} 
+[2026-02-06 19:26:47] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:26:47] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:26:58] local.INFO: 💰 Wallet AVANT: {"main":"502000.00","bonus":"0.00","total":502000.0} 
+[2026-02-06 19:26:58] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501900.0} 
+[2026-02-06 19:26:58] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:26:58] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:27:08] local.INFO: 💰 Wallet AVANT: {"main":"501900.00","bonus":"0.00","total":501900.0} 
+[2026-02-06 19:27:08] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501800.0} 
+[2026-02-06 19:27:08] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:27:08] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:27:17] local.INFO: 💰 Wallet AVANT: {"main":"501800.00","bonus":"0.00","total":501800.0} 
+[2026-02-06 19:27:17] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501700.0} 
+[2026-02-06 19:27:17] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:27:17] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:27:28] local.INFO: 💰 Wallet AVANT: {"main":"501700.00","bonus":"0.00","total":501700.0} 
+[2026-02-06 19:27:28] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501600.0} 
+[2026-02-06 19:27:28] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":5.0,"payout":600.0} 
+[2026-02-06 19:27:28] local.INFO: ✅ Après CRÉDIT: {"payout":600.0,"total":502200.0} 
+[2026-02-06 19:27:39] local.INFO: 💰 Wallet AVANT: {"main":"502200.00","bonus":"0.00","total":502200.0} 
+[2026-02-06 19:27:39] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":502100.0} 
+[2026-02-06 19:27:39] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:27:39] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:28:08] local.INFO: 💰 Wallet AVANT: {"main":"502100.00","bonus":"0.00","total":502100.0} 
+[2026-02-06 19:28:08] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":502000.0} 
+[2026-02-06 19:28:08] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:28:08] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:28:17] local.INFO: 💰 Wallet AVANT: {"main":"502000.00","bonus":"0.00","total":502000.0} 
+[2026-02-06 19:28:17] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":501900.0} 
+[2026-02-06 19:28:17] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":300.0} 
+[2026-02-06 19:28:17] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":502200.0} 
+[2026-02-06 19:48:03] local.INFO: 💰 Wallet AVANT: {"main":"502200.00","bonus":"0.00","total":502200.0} 
+[2026-02-06 19:48:03] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":502100.0} 
+[2026-02-06 19:48:03] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:48:03] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 19:50:42] local.ERROR: Command "tinker" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"tinker\" is not defined. at /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php:759)
+[stacktrace]
+#0 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php(298): Symfony\\Component\\Console\\Application->find('tinker')
+#1 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/symfony/console/Application.php(195): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/macbookpro/Desktop/Developments/Personnals/winpawa/winpawa_backend/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 {main}
+"} 
+[2026-02-06 19:58:33] local.INFO: 💰 Wallet AVANT: {"main":"500000.00","bonus":"0.00","total":500000.0} 
+[2026-02-06 19:58:33] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":499000.0} 
+[2026-02-06 19:58:33] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 19:58:33] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:07:36] local.INFO: 💰 Wallet AVANT: {"main":"499000.00","bonus":"0.00","total":499000.0} 
+[2026-02-06 20:07:36] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":498900.0} 
+[2026-02-06 20:07:36] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:07:36] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:13:41] local.INFO: 💰 Wallet AVANT: {"main":"498900.00","bonus":"0.00","total":498900.0} 
+[2026-02-06 20:13:41] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":498800.0} 
+[2026-02-06 20:13:41] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:13:41] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:15:40] local.INFO: 💰 Wallet AVANT: {"main":"498800.00","bonus":"0.00","total":498800.0} 
+[2026-02-06 20:15:40] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":498700.0} 
+[2026-02-06 20:15:40] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:15:40] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:16:01] local.INFO: 💰 Wallet AVANT: {"main":"498700.00","bonus":"0.00","total":498700.0} 
+[2026-02-06 20:16:01] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":498600.0} 
+[2026-02-06 20:16:01] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:16:01] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:16:14] local.INFO: 💰 Wallet AVANT: {"main":"498600.00","bonus":"0.00","total":498600.0} 
+[2026-02-06 20:16:14] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":498500.0} 
+[2026-02-06 20:16:14] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:16:14] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:23:02] local.INFO: 💰 Wallet AVANT: {"main":"498500.00","bonus":"0.00","total":498500.0} 
+[2026-02-06 20:23:02] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":498400.0} 
+[2026-02-06 20:23:02] local.INFO: 🎲 Résultat RNG: {"result":"7","is_winner":true,"multiplier":10.0,"payout":1100.0} 
+[2026-02-06 20:23:02] local.INFO: ✅ Après CRÉDIT: {"payout":1100.0,"total":499500.0} 
+[2026-02-06 20:24:58] local.INFO: 💰 Wallet AVANT: {"main":"499500.00","bonus":"0.00","total":499500.0} 
+[2026-02-06 20:24:58] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":498500.0} 
+[2026-02-06 20:24:58] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:24:58] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:25:06] local.INFO: 💰 Wallet AVANT: {"main":"498500.00","bonus":"0.00","total":498500.0} 
+[2026-02-06 20:25:06] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":497500.0} 
+[2026-02-06 20:25:06] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:25:06] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:25:14] local.INFO: 💰 Wallet AVANT: {"main":"497500.00","bonus":"0.00","total":497500.0} 
+[2026-02-06 20:25:14] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":496500.0} 
+[2026-02-06 20:25:14] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:25:14] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:25:22] local.INFO: 💰 Wallet AVANT: {"main":"496500.00","bonus":"0.00","total":496500.0} 
+[2026-02-06 20:25:22] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":495500.0} 
+[2026-02-06 20:25:22] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":5.0,"payout":6000.0} 
+[2026-02-06 20:25:22] local.INFO: ✅ Après CRÉDIT: {"payout":6000.0,"total":501500.0} 
+[2026-02-06 20:26:01] local.INFO: 💰 Wallet AVANT: {"main":"501500.00","bonus":"0.00","total":501500.0} 
+[2026-02-06 20:26:01] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":500500.0} 
+[2026-02-06 20:26:01] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":3000.0} 
+[2026-02-06 20:26:01] local.INFO: ✅ Après CRÉDIT: {"payout":3000.0,"total":503500.0} 
+[2026-02-06 20:26:18] local.INFO: 💰 Wallet AVANT: {"main":"503500.00","bonus":"0.00","total":503500.0} 
+[2026-02-06 20:26:18] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":502500.0} 
+[2026-02-06 20:26:18] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:26:18] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:28:32] local.INFO: 💰 Wallet AVANT: {"main":"502500.00","bonus":"0.00","total":502500.0} 
+[2026-02-06 20:28:32] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":501500.0} 
+[2026-02-06 20:28:32] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":5.0,"payout":6000.0} 
+[2026-02-06 20:28:32] local.INFO: ✅ Après CRÉDIT: {"payout":6000.0,"total":507500.0} 
+[2026-02-06 20:28:40] local.INFO: 💰 Wallet AVANT: {"main":"507500.00","bonus":"0.00","total":507500.0} 
+[2026-02-06 20:28:40] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":506500.0} 
+[2026-02-06 20:28:40] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:28:40] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:28:48] local.INFO: 💰 Wallet AVANT: {"main":"506500.00","bonus":"0.00","total":506500.0} 
+[2026-02-06 20:28:48] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":505500.0} 
+[2026-02-06 20:28:48] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":5.0,"payout":6000.0} 
+[2026-02-06 20:28:48] local.INFO: ✅ Après CRÉDIT: {"payout":6000.0,"total":511500.0} 
+[2026-02-06 20:28:56] local.INFO: 💰 Wallet AVANT: {"main":"511500.00","bonus":"0.00","total":511500.0} 
+[2026-02-06 20:28:56] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":510500.0} 
+[2026-02-06 20:28:56] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:28:56] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:29:04] local.INFO: 💰 Wallet AVANT: {"main":"510500.00","bonus":"0.00","total":510500.0} 
+[2026-02-06 20:29:04] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":509500.0} 
+[2026-02-06 20:29:04] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:29:04] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:29:12] local.INFO: 💰 Wallet AVANT: {"main":"509500.00","bonus":"0.00","total":509500.0} 
+[2026-02-06 20:29:12] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":508500.0} 
+[2026-02-06 20:29:12] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:29:12] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:29:19] local.INFO: 💰 Wallet AVANT: {"main":"508500.00","bonus":"0.00","total":508500.0} 
+[2026-02-06 20:29:19] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":507500.0} 
+[2026-02-06 20:29:19] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":3000.0} 
+[2026-02-06 20:29:19] local.INFO: ✅ Après CRÉDIT: {"payout":3000.0,"total":510500.0} 
+[2026-02-06 20:29:27] local.INFO: 💰 Wallet AVANT: {"main":"510500.00","bonus":"0.00","total":510500.0} 
+[2026-02-06 20:29:27] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":509500.0} 
+[2026-02-06 20:29:27] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:29:27] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:29:36] local.INFO: 💰 Wallet AVANT: {"main":"509500.00","bonus":"0.00","total":509500.0} 
+[2026-02-06 20:29:36] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":508500.0} 
+[2026-02-06 20:29:36] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:29:36] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:31:45] local.INFO: 💰 Wallet AVANT: {"main":"508500.00","bonus":"0.00","total":508500.0} 
+[2026-02-06 20:31:45] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":507500.0} 
+[2026-02-06 20:31:45] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:31:45] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:31:59] local.INFO: 💰 Wallet AVANT: {"main":"507500.00","bonus":"0.00","total":507500.0} 
+[2026-02-06 20:31:59] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":506500.0} 
+[2026-02-06 20:31:59] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":5.0,"payout":6000.0} 
+[2026-02-06 20:31:59] local.INFO: ✅ Après CRÉDIT: {"payout":6000.0,"total":512500.0} 
+[2026-02-06 20:32:22] local.INFO: 💰 Wallet AVANT: {"main":"512500.00","bonus":"0.00","total":512500.0} 
+[2026-02-06 20:32:22] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":511500.0} 
+[2026-02-06 20:32:22] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":3000.0} 
+[2026-02-06 20:32:22] local.INFO: ✅ Après CRÉDIT: {"payout":3000.0,"total":514500.0} 
+[2026-02-06 20:32:37] local.INFO: 💰 Wallet AVANT: {"main":"514500.00","bonus":"0.00","total":514500.0} 
+[2026-02-06 20:32:37] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":513500.0} 
+[2026-02-06 20:32:37] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:32:37] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:32:47] local.INFO: 💰 Wallet AVANT: {"main":"513500.00","bonus":"0.00","total":513500.0} 
+[2026-02-06 20:32:47] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":512500.0} 
+[2026-02-06 20:32:47] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:32:47] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:32:58] local.INFO: 💰 Wallet AVANT: {"main":"512500.00","bonus":"0.00","total":512500.0} 
+[2026-02-06 20:32:58] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":511500.0} 
+[2026-02-06 20:32:58] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:32:58] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:33:08] local.INFO: 💰 Wallet AVANT: {"main":"511500.00","bonus":"0.00","total":511500.0} 
+[2026-02-06 20:33:08] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":510500.0} 
+[2026-02-06 20:33:08] local.INFO: 🎲 Résultat RNG: {"result":"8","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:33:08] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:33:25] local.INFO: 💰 Wallet AVANT: {"main":"510500.00","bonus":"0.00","total":510500.0} 
+[2026-02-06 20:33:25] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":509500.0} 
+[2026-02-06 20:33:25] local.INFO: 🎲 Résultat RNG: {"result":"1","is_winner":true,"multiplier":2.0,"payout":3000.0} 
+[2026-02-06 20:33:25] local.INFO: ✅ Après CRÉDIT: {"payout":3000.0,"total":512500.0} 
+[2026-02-06 20:44:46] local.INFO: 💰 Wallet AVANT: {"main":"512500.00","bonus":"0.00","total":512500.0} 
+[2026-02-06 20:44:46] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":512400.0} 
+[2026-02-06 20:44:46] local.INFO: 🎲 Résultat RNG: {"result":"14","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:44:46] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:44:57] local.INFO: 💰 Wallet AVANT: {"main":"512400.00","bonus":"0.00","total":512400.0} 
+[2026-02-06 20:44:57] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":512300.0} 
+[2026-02-06 20:44:57] local.INFO: 🎲 Résultat RNG: {"result":"10","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:44:57] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:45:05] local.INFO: 💰 Wallet AVANT: {"main":"512300.00","bonus":"0.00","total":512300.0} 
+[2026-02-06 20:45:05] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":512200.0} 
+[2026-02-06 20:45:05] local.INFO: 🎲 Résultat RNG: {"result":"7","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:45:05] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:45:13] local.INFO: 💰 Wallet AVANT: {"main":"512200.00","bonus":"0.00","total":512200.0} 
+[2026-02-06 20:45:13] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":512100.0} 
+[2026-02-06 20:45:13] local.INFO: 🎲 Résultat RNG: {"result":"6","is_winner":true,"multiplier":2.0,"payout":300.0} 
+[2026-02-06 20:45:13] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":512400.0} 
+[2026-02-06 20:45:21] local.INFO: 💰 Wallet AVANT: {"main":"512400.00","bonus":"0.00","total":512400.0} 
+[2026-02-06 20:45:21] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":512300.0} 
+[2026-02-06 20:45:21] local.INFO: 🎲 Résultat RNG: {"result":"15","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:45:21] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:45:29] local.INFO: 💰 Wallet AVANT: {"main":"512300.00","bonus":"0.00","total":512300.0} 
+[2026-02-06 20:45:29] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":512200.0} 
+[2026-02-06 20:45:29] local.INFO: 🎲 Résultat RNG: {"result":"2","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:45:29] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:45:37] local.INFO: 💰 Wallet AVANT: {"main":"512200.00","bonus":"0.00","total":512200.0} 
+[2026-02-06 20:45:37] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":512100.0} 
+[2026-02-06 20:45:37] local.INFO: 🎲 Résultat RNG: {"result":"13","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:45:37] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:45:44] local.INFO: 💰 Wallet AVANT: {"main":"512100.00","bonus":"0.00","total":512100.0} 
+[2026-02-06 20:45:44] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":512000.0} 
+[2026-02-06 20:45:44] local.INFO: 🎲 Résultat RNG: {"result":"13","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:45:44] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-02-06 20:46:18] local.INFO: 💰 Wallet AVANT: {"main":"512000.00","bonus":"0.00","total":512000.0} 
+[2026-02-06 20:46:18] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":511900.0} 
+[2026-02-06 20:46:18] local.INFO: 🎲 Résultat RNG: {"result":"13","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-02-06 20:46:18] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-03-10 20:07:45] local.INFO: 💰 Wallet AVANT: {"main":"500000.00","bonus":"0.00","total":500000.0} 
+[2026-03-10 20:07:45] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":499900.0} 
+[2026-03-10 20:07:45] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-03-10 20:07:45] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-03-10 20:10:51] local.INFO: 💰 Wallet AVANT: {"main":"499900.00","bonus":"0.00","total":499900.0} 
+[2026-03-10 20:10:51] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":499800.0} 
+[2026-03-10 20:10:51] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":false,"multiplier":0.0,"payout":0} 
+[2026-03-10 20:10:51] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-03-10 20:11:05] local.INFO: 💰 Wallet AVANT: {"main":"499800.00","bonus":"0.00","total":499800.0} 
+[2026-03-10 20:11:05] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":499700.0} 
+[2026-03-10 20:11:05] local.INFO: 🎲 Résultat RNG: {"result":"5","is_winner":true,"multiplier":2.0,"payout":300.0} 
+[2026-03-10 20:11:05] local.INFO: ✅ Après CRÉDIT: {"payout":300.0,"total":500000.0} 
+[2026-03-10 20:12:01] local.INFO: 💰 Wallet AVANT: {"main":"500000.00","bonus":"0.00","total":500000.0} 
+[2026-03-10 20:12:01] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":499900.0} 
+[2026-03-10 20:12:01] local.INFO: 🎲 Résultat RNG: {"result":"diamond,diamond,heart,spade,star,club,heart,star,club","is_winner":false,"multiplier":0,"payout":0} 
+[2026-03-10 20:12:01] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-03-10 20:12:32] local.INFO: 💰 Wallet AVANT: {"main":"499900.00","bonus":"0.00","total":499900.0} 
+[2026-03-10 20:12:32] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":499800.0} 
+[2026-03-10 20:12:32] local.INFO: 🎲 Résultat RNG: {"result":"4","is_winner":true,"multiplier":3.0,"payout":400.0} 
+[2026-03-10 20:12:32] local.INFO: ✅ Après CRÉDIT: {"payout":400.0,"total":500200.0} 
+[2026-03-10 20:18:35] local.INFO: 🆕 [Event] VirtualMatchCreated créé {"match_id":91,"reference":"VM-X2FACG9T","teams":"Atletico Madrid vs Real Madrid","status":"upcoming","starts_at":"2026-03-10T20:29:00.000000Z"} 
+[2026-03-10 20:18:35] local.INFO: 📡 [Broadcast] VirtualMatchCreated data {"match_id":91,"status":"upcoming"} 
+[2026-03-10 20:18:35] local.INFO: 🆕 [Filament] Match virtuel créé et événement déclenché {"match_id":91,"reference":"VM-X2FACG9T","status":"upcoming"} 
+[2026-03-10 20:24:04] local.INFO: 💰 Wallet AVANT: {"main":"500100.00","bonus":"0.00","total":500100.0} 
+[2026-03-10 20:24:04] local.INFO: 💸 Après DÉBIT: {"amount":100,"total":500000.0} 
+[2026-03-10 20:24:04] local.INFO: 🎲 Résultat RNG: {"result":"scissors","is_winner":false,"multiplier":0,"payout":0} 
+[2026-03-10 20:24:04] local.INFO: ❌ PERTE - Pas de crédit  
+[2026-03-10 20:24:29] local.INFO: 💰 Wallet AVANT: {"main":"500000.00","bonus":"0.00","total":500000.0} 
+[2026-03-10 20:24:29] local.INFO: 💸 Après DÉBIT: {"amount":1000,"total":499000.0} 
+[2026-03-10 20:24:29] local.INFO: 🎲 Résultat RNG: {"result":"3","is_winner":true,"multiplier":5.0,"payout":6000.0} 
+[2026-03-10 20:24:29] local.INFO: ✅ Après CRÉDIT: {"payout":6000.0,"total":505000.0} 

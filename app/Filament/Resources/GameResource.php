@@ -139,20 +139,89 @@ class GameResource extends Resource
 
                         Forms\Components\TextInput::make('win_frequency')
                             ->label('Fréquence de gains (%)')
-                            ->helperText('Pourcentage de parties gagnantes')
+                            ->helperText('Pourcentage de parties gagnantes (génère automatiquement les segments perdants pour Apple of Fortune)')
                             ->numeric()
                             ->minValue(1)
                             ->maxValue(99)
                             ->suffix('%')
-                            ->default(35),
+                            ->default(35)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(function ($state, $set, $get) {
+                                // Auto-update info text
+                            }),
 
                         Forms\Components\TagsInput::make('multipliers')
-                            ->label('Multiplicateurs')
-                            ->helperText('Ex: 2, 5, 10')
+                            ->label('Multiplicateurs gagnants')
+                            ->helperText('Ex: 2, 5, 10 (pour Apple of Fortune, des segments perdants seront ajoutés automatiquement)')
                             ->placeholder('Ajouter un multiplicateur')
                             ->splitKeys(['Tab', ',', ' '])
                             ->default([2, 5, 10]),
                     ])->columns(3),
+
+                Forms\Components\Section::make('Configuration Apple of Fortune (Roulette)')
+                    ->description('Visualisation de la configuration générée automatiquement')
+                    ->icon('heroicon-o-circle-stack')
+                    ->schema([
+                        Forms\Components\Placeholder::make('roulette_config')
+                            ->label('Configuration des segments')
+                            ->content(function ($record) {
+                                if (!$record || !isset($record->settings['prizes'])) {
+                                    return '⚠️ Aucune configuration générée. Sauvegardez le jeu pour générer les segments.';
+                                }
+
+                                $prizes = $record->settings['prizes'] ?? [];
+                                $winningSegments = $record->settings['winning_segments'] ?? 0;
+                                $totalSegments = $record->settings['segments'] ?? 0;
+                                $losingSegments = $totalSegments - $winningSegments;
+                                $winRate = $totalSegments > 0 ? round(($winningSegments / $totalSegments) * 100) : 0;
+
+                                $html = '<div class="space-y-3">';
+                                $html .= '<div class="grid grid-cols-3 gap-2 text-sm">';
+                                $html .= '<div class="bg-green-50 dark:bg-green-900/20 p-2 rounded border border-green-200 dark:border-green-800">';
+                                $html .= '<div class="font-semibold text-green-600 dark:text-green-400">✅ Segments gagnants</div>';
+                                $html .= '<div class="text-2xl font-bold text-green-700 dark:text-green-300">' . $winningSegments . '</div>';
+                                $html .= '</div>';
+                                $html .= '<div class="bg-red-50 dark:bg-red-900/20 p-2 rounded border border-red-200 dark:border-red-800">';
+                                $html .= '<div class="font-semibold text-red-600 dark:text-red-400">❌ Segments perdants</div>';
+                                $html .= '<div class="text-2xl font-bold text-red-700 dark:text-red-300">' . $losingSegments . '</div>';
+                                $html .= '</div>';
+                                $html .= '<div class="bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-200 dark:border-blue-800">';
+                                $html .= '<div class="font-semibold text-blue-600 dark:text-blue-400">📊 Probabilité</div>';
+                                $html .= '<div class="text-2xl font-bold text-blue-700 dark:text-blue-300">' . $winRate . '%</div>';
+                                $html .= '</div>';
+                                $html .= '</div>';
+
+                                $html .= '<div class="mt-4"><div class="font-semibold mb-2 text-gray-700 dark:text-gray-300">🎰 Détail des segments :</div>';
+                                $html .= '<div class="grid grid-cols-2 md:grid-cols-3 gap-2">';
+
+                                foreach ($prizes as $segmentNumber => $prize) {
+                                    $multiplier = $prize['multiplier'] ?? 0;
+                                    $color = $prize['color'] ?? '#ccc';
+                                    $isWinner = $multiplier > 0;
+
+                                    $borderColor = $isWinner ? 'border-green-500' : 'border-red-500';
+                                    $bgColor = $isWinner ? 'bg-white dark:bg-gray-800' : 'bg-gray-100 dark:bg-gray-900';
+
+                                    $html .= '<div class="flex items-center gap-2 p-2 rounded border ' . $borderColor . ' ' . $bgColor . '">';
+                                    $html .= '<div class="w-6 h-6 rounded-full border-2 border-white shadow" style="background-color: ' . $color . '"></div>';
+                                    $html .= '<div class="flex-1">';
+                                    $html .= '<div class="text-xs text-gray-500 dark:text-gray-400">Segment #' . $segmentNumber . '</div>';
+                                    $html .= '<div class="font-bold ' . ($isWinner ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400') . '">';
+                                    $html .= $isWinner ? $multiplier . 'x' : '💀 0x';
+                                    $html .= '</div>';
+                                    $html .= '</div>';
+                                    $html .= '</div>';
+                                }
+
+                                $html .= '</div></div>';
+                                $html .= '</div>';
+
+                                return new \Illuminate\Support\HtmlString($html);
+                            })
+                            ->columnSpanFull(),
+                    ])
+                    ->visible(fn ($record) => $record && $record->type === \App\Enums\GameType::ROULETTE)
+                    ->collapsible(),
 
                 Forms\Components\Section::make('Limites de mise')
                     ->description('Montants minimum et maximum autorisés')

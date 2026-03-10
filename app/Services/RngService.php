@@ -78,6 +78,16 @@ class RngService
             } else {
                 $result = $this->generateLosingQuiz($bet->choice, $hash);
             }
+        } elseif ($game->type === GameType::ROULETTE || $game->type === GameType::JACKPOT) {
+            // Pour la Roulette et Jackpot : la win_frequency est gérée par la distribution des segments
+            // On tire un segment aléatoire, puis on vérifie si c'est un segment gagnant
+            $result = $this->generateGameSpecificResult($game, $bet->choice, $hash);
+
+            // Récupérer le multiplicateur du segment
+            $multiplier = $this->getMultiplier($game, $result, $hash);
+
+            // Le segment est gagnant si son multiplicateur > 0
+            $isWinner = $multiplier > 0;
         } else {
             // Générer le résultat spécifique au type de jeu
             $result = $this->generateGameSpecificResult($game, $bet->choice, $hash);
@@ -86,7 +96,11 @@ class RngService
         }
 
         // Calculer le multiplicateur et le payout
-        $multiplier = $isWinner ? $this->getMultiplier($game, $result, $hash) : 0;
+        // Pour la roulette, le multiplicateur est déjà calculé ci-dessus
+        if ($game->type !== GameType::ROULETTE && $game->type !== GameType::JACKPOT) {
+            $multiplier = $isWinner ? $this->getMultiplier($game, $result, $hash) : 0;
+        }
+
         // Payout = (mise × multiplicateur) + mise de retour
         $payout = $isWinner ? ($bet->amount * $multiplier) + $bet->amount : 0;
 
@@ -186,7 +200,15 @@ class RngService
 
     protected function rouletteResult(string $hash, Game $game): string
     {
-        $segments = $game->settings['segments'] ?? 8;
+        // Pour la roulette, on tire un segment aléatoire parmi tous les segments (gagnants + perdants)
+        // La win_frequency est déjà gérée par la distribution des segments
+        $prizes = $game->settings['prizes'] ?? [];
+        $segments = count($prizes);
+
+        if ($segments === 0) {
+            $segments = $game->settings['segments'] ?? 8;
+        }
+
         $segment = (hexdec(substr($hash, 8, 4)) % $segments) + 1;
         return (string) $segment;
     }
@@ -515,7 +537,14 @@ class RngService
             $segment = (int) $result;
 
             if (isset($prizes[$segment]['multiplier'])) {
-                return (float) $prizes[$segment]['multiplier'];
+                $multiplier = (float) $prizes[$segment]['multiplier'];
+
+                // Si le multiplicateur est 0, c'est un segment perdant
+                if ($multiplier === 0.0) {
+                    return 0;
+                }
+
+                return $multiplier;
             }
         }
 
